@@ -6,8 +6,10 @@ import { GlobalStyle } from './global.styles';
 
 import avatarImage from './assets/avatar-ps-resized.jpg';
 import EmployeeForm from './components/add-employee/add-employee.component';
+import useZoomAndPan from './hooks/useZoomAndPan';
 
 function App() {
+  useZoomAndPan('.p-organizationchart');
   const [selectedNode, setSelectedNode] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [data, setData] = useState([{
@@ -57,7 +59,6 @@ function App() {
       </div>
     );
   };
-
 
   const onAddEmployee = (newEmployee) => {
     // Add the new employee to the selected node's children array
