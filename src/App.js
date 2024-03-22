@@ -1,23 +1,18 @@
-import React from 'react';
-import { OrganizationChart } from 'primereact/organizationchart';
-import EmployeeNode from './components/employee-node/employee-node.component';
+import React, { Fragment } from 'react';
 import './App.scss';
-
 import { GlobalStyle } from './global.styles';
-
-import EmployeeForm from './components/add-employee/add-employee.component';
 import useZoomAndPan from './hooks/useZoomAndPan';
+import OrgChart from './components/org-chart/org-chart.component';
 
 function App() {
-  const { data, nodeTemplate, showForm, onAddEmployee, setShowForm } = EmployeeNode();
+  
   useZoomAndPan('.p-organizationchart');
   
   return (
-    <>
+    <Fragment>
       <GlobalStyle />
-      <OrganizationChart value={data} nodeTemplate={nodeTemplate} />
-      {showForm && <EmployeeForm onAddEmployee={onAddEmployee} onCancel={() => setShowForm(false)} />}
-    </>
+      <OrgChart />
+    </Fragment>
   );
 }
 
