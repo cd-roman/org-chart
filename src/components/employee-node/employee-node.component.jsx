@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import avatarImage from '../../assets/avatar-ps-resized.jpg';
 import AddButton from '../add-button/add-button.component';
+import KebabMenu from '../node-menu-icon/node-menu-icon.component';
 
 import { EmployeeNodeContainer, ImageContainer, EmployeeName, EmployeeTitle } from './employee-node-styles';
 
@@ -28,6 +29,7 @@ function EmployeeNode() {
   const nodeTemplate = (node) => {
     return (
       <EmployeeNodeContainer>
+        <KebabMenu />
         <ImageContainer>
           <img src={node.data.avatar} alt={node.label}/>
         </ImageContainer>
