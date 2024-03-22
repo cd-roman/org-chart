@@ -2,35 +2,39 @@ import React, { useState } from 'react';
 import avatarImage from '../../assets/avatar-ps-resized.jpg';
 import AddButton from '../add-button/add-button.component';
 
+import { EmployeeNodeContainer, ImageContainer, EmployeeName, EmployeeTitle } from './employee-node-styles';
+
 function EmployeeNode() {
   const [selectedNode, setSelectedNode] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [data, setData] = useState([{
     name: 'Lucy Adams',
     expanded: true,
-    data: {avatar: avatarImage, position: 'CEO'},
+    data: {avatar: avatarImage, title: 'CEO'},
     children: [
       {
         name: 'Jane Smith',
         expanded: true,
-        data: {avatar: avatarImage, position: 'Chief Information Officer'}
+        data: {avatar: avatarImage, title: 'Chief Information Officer'}
       },
       {
         name: 'Amanda Brown',
         expanded: true,
-        data: {avatar: avatarImage, position: 'Chief Financial Officer'}
+        data: {avatar: avatarImage, title: 'Chief Financial Officer'}
       }
     ]
   }]);
 
   const nodeTemplate = (node) => {
     return (
-      <div>
-        <img src={node.data.avatar} alt={node.label} style={{width: '48px', height: '48px', borderRadius: '24px'}} />
-        <div>{node.name}</div>
-        <div>{node.data.position}</div>
-        <AddButton setSelectedNode={setSelectedNode} setShowForm={setShowForm} node={node} />
-      </div>
+      <EmployeeNodeContainer>
+        <ImageContainer>
+          <img src={node.data.avatar} alt={node.label}/>
+        </ImageContainer>
+        <EmployeeName>{node.name}</EmployeeName>
+        <EmployeeTitle>{node.data.title}</EmployeeTitle>
+        <AddButton className="add-button" setSelectedNode={setSelectedNode} setShowForm={setShowForm} node={node} />
+      </EmployeeNodeContainer>
     );
   };
 

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const AddNewEmployeeButton = styled.button`
+  display: none;
   position: absolute;
   right: 8px;
   bottom: 8px;

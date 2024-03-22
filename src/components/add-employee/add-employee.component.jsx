@@ -3,7 +3,7 @@ import placeholderImage from '../../assets/avatar-placeholder.jpg';
 
 function EmployeeForm({ onAddEmployee }) {
   const [name, setName] = useState('');
-  const [position, setPosition] = useState('');
+  const [title, setTitle] = useState('');
   const [image, setImage] = useState(null);
 
   const handleImageChange = (e) => {
@@ -21,14 +21,15 @@ function EmployeeForm({ onAddEmployee }) {
     e.preventDefault();
     onAddEmployee({
       name: name,
+      expanded: true,
       data: {
         avatar: image || placeholderImage,
-        position: position
+        title: title
       },
       children: []
     });
     setName('');
-    setPosition('');
+    setTitle('');
     setImage(null);
   };
 
@@ -43,10 +44,10 @@ function EmployeeForm({ onAddEmployee }) {
       />
       <input
         type="text"
-        placeholder="Position"
+        placeholder="Title"
         required
-        value={position}
-        onChange={(e) => setPosition(e.target.value)}
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
       />
       <input
         type="file"

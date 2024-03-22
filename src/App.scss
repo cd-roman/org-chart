@@ -41,6 +41,14 @@
   }
 }
 
+.p-organizationchart-node-content {
+  &:hover {
+    button {
+      display: block;
+    }
+  }
+}
+
 .p-organizationchart-node-content .p-node-toggler {
   transform: rotate(180deg);
 }
@@ -48,3 +56,4 @@
 .p-organizationchart-node-content div {
   padding: 4px;
 }
+
