@@ -20,7 +20,7 @@ function EmployeeForm({ onAddEmployee }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     onAddEmployee({
-      label: name,
+      name: name,
       data: {
         avatar: image || placeholderImage,
         position: position

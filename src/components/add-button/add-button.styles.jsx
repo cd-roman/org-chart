@@ -2,13 +2,13 @@ import styled from 'styled-components';
 
 const AddNewEmployeeButton = styled.button`
   position: absolute;
-  right: 0;
-  bottom: 0;
+  right: 8px;
+  bottom: 8px;
   border-radius: 50%;
-  width: 25px;
-  height: 25px;
+  width: 24px;
+  height: 24px;
   font-size: 16px;
-  line-height: 25px;
+  line-height: 24px;
   text-align: center;
   border: none;
   background: blue;

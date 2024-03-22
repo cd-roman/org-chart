@@ -6,17 +6,17 @@ function EmployeeNode() {
   const [selectedNode, setSelectedNode] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [data, setData] = useState([{
-    label: 'Lucy Adams',
+    name: 'Lucy Adams',
     expanded: true,
     data: {avatar: avatarImage, position: 'CEO'},
     children: [
       {
-        label: 'Jane Smith',
+        name: 'Jane Smith',
         expanded: true,
         data: {avatar: avatarImage, position: 'Chief Information Officer'}
       },
       {
-        label: 'Amanda Brown',
+        name: 'Amanda Brown',
         expanded: true,
         data: {avatar: avatarImage, position: 'Chief Financial Officer'}
       }
@@ -27,7 +27,7 @@ function EmployeeNode() {
     return (
       <div>
         <img src={node.data.avatar} alt={node.label} style={{width: '48px', height: '48px', borderRadius: '24px'}} />
-        <div>{node.label}</div>
+        <div>{node.name}</div>
         <div>{node.data.position}</div>
         <AddButton setSelectedNode={setSelectedNode} setShowForm={setShowForm} node={node} />
       </div>
