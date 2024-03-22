@@ -37,12 +37,14 @@ function EmployeeForm({ onAddEmployee }) {
       <input
         type="text"
         placeholder="Name"
+        required
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
       <input
         type="text"
         placeholder="Position"
+        required
         value={position}
         onChange={(e) => setPosition(e.target.value)}
       />
