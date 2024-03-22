@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import placeholderImage from '../../assets/avatar-placeholder.jpg';
+import { Modal, Form, FormInput, FormButton } from './add-employee.styles';
 
-function EmployeeForm({ onAddEmployee }) {
+function EmployeeForm({ onAddEmployee, onCancel }) {
   const [name, setName] = useState('');
   const [title, setTitle] = useState('');
   const [image, setImage] = useState(null);
@@ -34,27 +35,32 @@ function EmployeeForm({ onAddEmployee }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Name"
-        required
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Title"
-        required
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <input
-        type="file"
-        onChange={handleImageChange}
-      />
-      <button type="submit">Add Employee</button>
-    </form>
+    <Modal>
+      <div className="modal-content">
+        <Form onSubmit={handleSubmit}>
+          <FormInput
+            type="text"
+            placeholder="Name"
+            required
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <FormInput
+            type="text"
+            placeholder="Title"
+            required
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <FormInput
+            type="file"
+            onChange={handleImageChange}
+          />
+          <FormButton type="submit">Add employee</FormButton>
+          <FormButton type="button" onClick={onCancel}>Cancel</FormButton>
+        </Form>
+      </div>
+    </Modal>
   );
 }
 

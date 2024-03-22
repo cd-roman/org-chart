@@ -47,7 +47,9 @@ function EmployeeNode() {
     setShowForm(false);
   };
 
-  return { data, nodeTemplate, showForm, onAddEmployee };
+
+
+  return { data, nodeTemplate, showForm, onAddEmployee, setShowForm };
 }
 
 export default EmployeeNode;

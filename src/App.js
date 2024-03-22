@@ -9,14 +9,14 @@ import EmployeeForm from './components/add-employee/add-employee.component';
 import useZoomAndPan from './hooks/useZoomAndPan';
 
 function App() {
-  const { data, nodeTemplate, showForm, onAddEmployee } = EmployeeNode();
+  const { data, nodeTemplate, showForm, onAddEmployee, setShowForm } = EmployeeNode();
   useZoomAndPan('.p-organizationchart');
   
   return (
     <>
       <GlobalStyle />
       <OrganizationChart value={data} nodeTemplate={nodeTemplate} />
-      {showForm && <EmployeeForm onAddEmployee={onAddEmployee} />}
+      {showForm && <EmployeeForm onAddEmployee={onAddEmployee} onCancel={() => setShowForm(false)} />}
     </>
   );
 }
