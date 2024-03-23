@@ -3,7 +3,7 @@ import { NodeModalMenu, NodeModalMenuItem } from './node-menu.styles';
 
 function EmployeeNodeMenu({ showMenu, deleteNode, nodeId }) {
   return (
-    <NodeModalMenu show={showMenu}>
+    <NodeModalMenu $show={true}>
       <NodeModalMenuItem>
         Edit
       </NodeModalMenuItem>

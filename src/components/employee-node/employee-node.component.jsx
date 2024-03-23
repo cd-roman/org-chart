@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import avatarImage from '../../assets/avatar-ps-resized.jpg';
+import initialData from '../../initialData.json';
 import AddButton from '../add-button/add-button.component';
 import KebabMenu from '../node-menu-icon/node-menu-icon.component';
 
@@ -8,43 +8,21 @@ import { EmployeeNodeContainer, ImageContainer, EmployeeName, EmployeeTitle } fr
 function EmployeeNode() {
   const [selectedNode, setSelectedNode] = useState(null);
   const [showForm, setShowForm] = useState(false);
-  const [data, setData] = useState([{
+  const [data, setData] = useState(initialData);
 
-    name: 'Board',
-    expanded: true,
-    data: {avatar: avatarImage, title: 'ACME corp', id: '1'},
-    children: [
-      {
-        name: 'Lucy Adams',
-        expanded: true,
-        data: {avatar: avatarImage, title: 'CEO', id: '2'},
-        children: [
-          {
-            name: 'Jane Smith',
-            expanded: true,
-            data: {avatar: avatarImage, title: 'Chief Information Officer', id: '3'},
-          },
-          {
-            name: 'Amanda Brown',
-            expanded: true,
-            data: {avatar: avatarImage, title: 'Chief Financial Officer', id: '4'},
-            children: [
-              {
-                name: 'Janet Carter',
-                expanded: true,
-                data: {avatar: avatarImage, title: 'Financial Analyst', id: '5'},
-              },        
-            ]
-          },
-          {
-            name: 'Joaquin Rodriguez',
-            expanded: true,
-            data: {avatar: avatarImage, title: 'CTO', id: '6'},
-          },         
-        ]
-      }
-    ]
-  }]);
+  const nodeTemplate = (node) => {
+    return (
+      <EmployeeNodeContainer>
+        <KebabMenu deleteNode={deleteNode} nodeId={node.data.id} />
+        <ImageContainer>
+          <img src={node.data.avatar} alt={node.label}/>
+        </ImageContainer>
+        <EmployeeName>{node.name}</EmployeeName>
+        <EmployeeTitle>{node.data.title}</EmployeeTitle>
+        <AddButton className="add-button" setSelectedNode={setSelectedNode} setShowForm={setShowForm} node={node} />
+      </EmployeeNodeContainer>
+    );
+  };
 
   const deleteNode = (nodeId) => {
     const newData = JSON.parse(JSON.stringify(data)); // Deep copy of the data
@@ -81,20 +59,6 @@ function EmployeeNode() {
   
     findAndDeleteNode(newData);
     setData(newData);
-  };
-  
-  const nodeTemplate = (node) => {
-    return (
-      <EmployeeNodeContainer>
-        <KebabMenu deleteNode={deleteNode} nodeId={node.data.id} />
-        <ImageContainer>
-          <img src={node.data.avatar} alt={node.label}/>
-        </ImageContainer>
-        <EmployeeName>{node.name}</EmployeeName>
-        <EmployeeTitle>{node.data.title}</EmployeeTitle>
-        <AddButton className="add-button" setSelectedNode={setSelectedNode} setShowForm={setShowForm} node={node} />
-      </EmployeeNodeContainer>
-    );
   };
 
   const findHighestId = (data) => {

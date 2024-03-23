@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const NodeModalMenu = styled.div`
-  display: ${props => (props.show ? 'block' : 'none')};
+  display: ${props => (props.$show ? 'block' : 'none')};
   position: absolute;
   right: 0;
   top: 24px;

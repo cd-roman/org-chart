@@ -1,0 +1,62 @@
+[
+    {
+        "name": "Board",
+        "expanded": true,
+        "data": {
+            "avatar": "https://live.staticflickr.com/65535/53605161310_aa8238333a_o.jpg",
+            "title": "ACME corp",
+            "id": "1"
+        },
+        "children": [
+            {
+                "name": "Lucy Adams",
+                "expanded": true,
+                "data": {
+                    "avatar": "https://live.staticflickr.com/65535/53605161310_aa8238333a_o.jpg",
+                    "title": "CEO",
+                    "id": "2"
+                },
+                "children": [
+                    {
+                        "name": "Jane Smith",
+                        "expanded": true,
+                        "data": {
+                            "avatar": "https://live.staticflickr.com/65535/53605161310_aa8238333a_o.jpg",
+                            "title": "Chief Information Officer",
+                            "id": "3"
+                        }
+                    },
+                    {
+                        "name": "Amanda Brown",
+                        "expanded": true,
+                        "data": {
+                            "avatar": "https://live.staticflickr.com/65535/53605161310_aa8238333a_o.jpg",
+                            "title": "Chief Financial Officer",
+                            "id": "4"
+                        },
+                        "children": [
+                            {
+                                "name": "Janet Carter",
+                                "expanded": true,
+                                "data": {
+                                    "avatar": "https://live.staticflickr.com/65535/53605161310_aa8238333a_o.jpg",
+                                    "title": "Financial Analyst",
+                                    "id": "5"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Joaquin Rodriguez",
+                        "expanded": true,
+                        "data": {
+                            "avatar": "https://live.staticflickr.com/65535/53605161310_aa8238333a_o.jpg",
+                            "title": "CTO",
+                            "id": "6"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+]
