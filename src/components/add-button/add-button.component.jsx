@@ -1,11 +1,11 @@
 import React from 'react';
 import AddNewEmployeeButton from './add-button.styles';
 
-function AddButton ({ setSelectedNode, setShowForm, node })  {
+function AddButton ({ setSelectedNode, setShowAddForm, node })  {
     return (
         <AddNewEmployeeButton onClick={() => {
             setSelectedNode(node);
-            setShowForm(true);
+            setShowAddForm(true);
           }}>
         +
         </AddNewEmployeeButton>

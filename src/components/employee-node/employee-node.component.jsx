@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import initialData from '../../initialData.json';
 import AddButton from '../add-button/add-button.component';
 import KebabMenu from '../node-menu-icon/node-menu-icon.component';
@@ -7,21 +7,56 @@ import { EmployeeNodeContainer, ImageContainer, EmployeeName, EmployeeTitle } fr
 
 function EmployeeNode() {
   const [selectedNode, setSelectedNode] = useState(null);
-  const [showForm, setShowForm] = useState(false);
+  const [showAddForm, setShowAddForm] = useState(false);
   const [data, setData] = useState(initialData);
+  const [showEditForm, setShowEditForm] = useState(false);
+  const [editingEmployee, setEditingEmployee] = useState(null);
 
   const nodeTemplate = (node) => {
     return (
       <EmployeeNodeContainer>
-        <KebabMenu deleteNode={deleteNode} nodeId={node.data.id} />
+        <KebabMenu deleteNode={deleteNode} editNode={editNode} nodeId={node.data.id} setEditingEmployee={setEditingEmployee}/>
         <ImageContainer>
           <img src={node.data.avatar} alt={node.label}/>
         </ImageContainer>
         <EmployeeName>{node.name}</EmployeeName>
         <EmployeeTitle>{node.data.title}</EmployeeTitle>
-        <AddButton className="add-button" setSelectedNode={setSelectedNode} setShowForm={setShowForm} node={node} />
+        <AddButton className="add-button" setSelectedNode={setSelectedNode} setShowAddForm={setShowAddForm} node={node} />
       </EmployeeNodeContainer>
     );
+  };
+
+  useEffect(() => {
+    console.log('Editing Employee:', editingEmployee);
+  }, [editingEmployee]);
+  
+  useEffect(() => {
+    console.log('Show Edit Form:', showEditForm);
+  }, [showEditForm]);
+
+  const findEmployee = (data, nodeId) => {
+    for (let employee of data) {
+      if (employee.data.id === nodeId) {
+        return employee;
+      }
+  
+      if (employee.children) {
+        const found = findEmployee(employee.children, nodeId);
+        if (found) {
+          return found;
+        }
+      }
+    }
+  
+    return null;
+  };
+  
+  const editNode = (nodeId) => {
+    console.log('Data:', data);
+    const employee = findEmployee(data, nodeId);
+    console.log('Employee:', employee);
+    setEditingEmployee(employee);
+    setShowEditForm(true);
   };
 
   const deleteNode = (nodeId) => {
@@ -80,16 +115,33 @@ function EmployeeNode() {
     newEmployee.data.id = highestId;
     selectedNode.children = [...(selectedNode.children || []), newEmployee];
     setData([...data]);
-    setShowForm(false);
+    setShowAddForm(false);
+  };
+
+  const onEditEmployee = (updatedEmployee) => {
+    const newData = data.map(employee => employee.data.id === updatedEmployee.data.id ? updatedEmployee : employee);
+    setData(newData);
+    console.log(newData);
+    setEditingEmployee(null);
+  };
+
+  const handleCancelEdit = () => {
+    setShowEditForm(false);
   };
 
   return {
     data,
     nodeTemplate,
-    showForm,
+    showAddForm,
     onAddEmployee,
-    setShowForm,
-    findHighestId, // Add this line
+    setShowAddForm,
+    findHighestId, 
+    editingEmployee,
+    setEditingEmployee,
+    showEditForm,
+    setShowEditForm,
+    handleCancelEdit,
+    onEditEmployee,
   };
 }
 
