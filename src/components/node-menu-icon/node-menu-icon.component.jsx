@@ -3,7 +3,7 @@ import { KebabMenuButton, KebabIcon } from './node-menu-icon.styles';
 import EmployeeNodeMenu from '../node-menu/node-menu.component';
 
 
-function KebabMenu() {
+function KebabMenu({ deleteNode, nodeId }) {
     const [showMenu, setShowMenu] = useState(false);
     const menuRef = useRef(null);
 
@@ -20,16 +20,16 @@ function KebabMenu() {
         };
       }, []);
 
-    return (
+      return (
         <KebabMenuButton onClick={() => setShowMenu(!showMenu)} ref={menuRef}>
-        <KebabIcon />
-        <KebabIcon />
-        <KebabIcon />
-            {showMenu && (
-                <EmployeeNodeMenu showMenu={showMenu} />
-            )}
+          <KebabIcon />
+          <KebabIcon />
+          <KebabIcon />
+          {showMenu && (
+            <EmployeeNodeMenu showMenu={showMenu} deleteNode={deleteNode} nodeId={nodeId} />
+          )}
         </KebabMenuButton>
-    );
+      );
   }
   
 export default KebabMenu;

@@ -1,11 +1,15 @@
 import React from 'react';
 import { NodeModalMenu, NodeModalMenuItem } from './node-menu.styles';
 
-function EmployeeNodeMenu({ showMenu }) {
+function EmployeeNodeMenu({ showMenu, deleteNode, nodeId }) {
   return (
     <NodeModalMenu show={showMenu}>
-      <NodeModalMenuItem>Edit</NodeModalMenuItem>
-      <NodeModalMenuItem>Delete</NodeModalMenuItem>
+      <NodeModalMenuItem>
+        Edit
+      </NodeModalMenuItem>
+      <NodeModalMenuItem onClick={() => deleteNode(nodeId)}>
+        Delete
+      </NodeModalMenuItem>
     </NodeModalMenu>
   );
 }

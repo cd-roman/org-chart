@@ -5,12 +5,12 @@ import EmployeeForm from '../add-employee/add-employee.component';
 import './org-chart.styles.scss';
 
 function OrgChart () {
-    const { data, nodeTemplate, showForm, onAddEmployee, setShowForm } = EmployeeNode();
+    const { data, nodeTemplate, showForm, onAddEmployee, setShowForm, findHighestId } = EmployeeNode();
     
     return (
         <>
         <OrganizationChart value={data} nodeTemplate={nodeTemplate} />
-        {showForm && <EmployeeForm onAddEmployee={onAddEmployee} onCancel={() => setShowForm(false)} />}
+        {showForm && <EmployeeForm onAddEmployee={onAddEmployee} onCancel={() => setShowForm(false)} data={data} findHighestId={findHighestId} />}
         </>
     );
 }

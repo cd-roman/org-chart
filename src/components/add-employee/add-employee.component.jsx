@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import placeholderImage from '../../assets/avatar-placeholder.jpg';
 import { Modal, Form, FormInput, FormButton } from './add-employee.styles';
 
-function EmployeeForm({ onAddEmployee, onCancel }) {
+function EmployeeForm({ onAddEmployee, onCancel, findHighestId, data }) {
   const [name, setName] = useState('');
   const [title, setTitle] = useState('');
   const [image, setImage] = useState(null);
@@ -20,12 +20,15 @@ function EmployeeForm({ onAddEmployee, onCancel }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const id = Number(findHighestId(data)) + 1;
+    console.log('New Employee ID:', id);
     onAddEmployee({
       name: name,
       expanded: true,
       data: {
         avatar: image || placeholderImage,
-        title: title
+        title: title,
+        id,
       },
       children: []
     });
