@@ -12,6 +12,7 @@ export const Modal = styled.div`
   height: 100%;
   overflow: auto;
   background-color: rgba(0,0,0,0.4);
+  cursor: default;
 
   .modal-content {
     padding: 48px;
@@ -37,4 +38,5 @@ export const FormButton = styled.button`
   max-width: 160px;
   background-color: #898989;
   color: white;
+  cursor: pointer;
 `;

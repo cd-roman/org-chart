@@ -9,6 +9,11 @@ export const GlobalStyle = createGlobalStyle`
 	body {
 		font-family: Open-Sans, Helvetica, Sans-Serif;
 		padding: 20px 40px;
+		cursor: grab;
+	}
+
+	body:active {
+		cursor: grabbing;
 	}
 
 	a {
