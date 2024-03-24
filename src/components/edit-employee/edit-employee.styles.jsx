@@ -40,3 +40,16 @@ export const EditFormButton = styled.button`
   color: white;
   cursor: pointer;
 `;
+
+export const ImageContainer = styled.div`
+  width: 96px;
+  height: 96px;
+  margin-bottom: 20px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 48px;
+  }
+`;

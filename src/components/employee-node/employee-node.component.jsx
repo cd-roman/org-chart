@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import initialData from '../../initialData.json';
 import AddButton from '../add-button/add-button.component';
 import KebabMenu from '../node-menu-icon/node-menu-icon.component';
@@ -26,14 +26,6 @@ function EmployeeNode() {
     );
   };
 
-  useEffect(() => {
-    console.log('Editing Employee:', editingEmployee);
-  }, [editingEmployee]);
-  
-  useEffect(() => {
-    console.log('Show Edit Form:', showEditForm);
-  }, [showEditForm]);
-
   const findEmployee = (data, nodeId) => {
     for (let employee of data) {
       if (employee.data.id === nodeId) {
@@ -52,11 +44,37 @@ function EmployeeNode() {
   };
   
   const editNode = (nodeId) => {
-    console.log('Data:', data);
     const employee = findEmployee(data, nodeId);
-    console.log('Employee:', employee);
     setEditingEmployee(employee);
     setShowEditForm(true);
+  };
+
+  const updateEmployee = (data, updatedEmployee) => {
+    return data.map(employee => {
+      if (employee.data.id === updatedEmployee.data.id) {
+        return updatedEmployee;
+      }
+  
+      if (employee.children) {
+        return {
+          ...employee,
+          children: updateEmployee(employee.children, updatedEmployee)
+        };
+      }
+  
+      return employee;
+    });
+  };
+
+  const handleEditEmployee = (updatedEmployee) => {
+    const newData = updateEmployee(data, updatedEmployee);
+    setData(newData);
+    setEditingEmployee(null);
+    setShowEditForm(false);
+  };
+
+  const handleCancelEdit = () => {
+    setShowEditForm(false);
   };
 
   const deleteNode = (nodeId) => {
@@ -118,30 +136,19 @@ function EmployeeNode() {
     setShowAddForm(false);
   };
 
-  const onEditEmployee = (updatedEmployee) => {
-    const newData = data.map(employee => employee.data.id === updatedEmployee.data.id ? updatedEmployee : employee);
-    setData(newData);
-    console.log(newData);
-    setEditingEmployee(null);
-  };
-
-  const handleCancelEdit = () => {
-    setShowEditForm(false);
-  };
-
   return {
     data,
     nodeTemplate,
     showAddForm,
-    onAddEmployee,
     setShowAddForm,
+    onAddEmployee,
     findHighestId, 
     editingEmployee,
     setEditingEmployee,
     showEditForm,
     setShowEditForm,
+    handleEditEmployee,
     handleCancelEdit,
-    onEditEmployee,
   };
 }
 
