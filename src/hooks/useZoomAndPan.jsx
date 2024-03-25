@@ -12,7 +12,7 @@ function useZoomAndPan(containerSelector) {
         const handleWheel = (event) => {
           event.preventDefault();
           scale += event.deltaY * -0.01;
-          scale = Math.min(Math.max(.125, scale), 4);
+          scale = Math.min(Math.max(.5, scale), 2);
           container.style.transform = `translate(${pan.x}px, ${pan.y}px) scale(${scale})`;
         };
       
