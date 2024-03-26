@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import placeholderImage from '../../assets/avatar-placeholder.jpg';
-import { Modal, Form, FormInput, FormButton } from './add-employee.styles';
+import React, { useState } from "react";
+import placeholderImage from "../../assets/avatar-placeholder.jpg";
+import { Modal, Form, FormInput, FormButton } from "./add-employee.styles";
 
 function EmployeeForm({ onAddEmployee, onCancel, findHighestId, data }) {
-  const [name, setName] = useState('');
-  const [title, setTitle] = useState('');
+  const [name, setName] = useState("");
+  const [title, setTitle] = useState("");
   const [image, setImage] = useState(null);
 
   const handleImageChange = (e) => {
@@ -21,7 +21,7 @@ function EmployeeForm({ onAddEmployee, onCancel, findHighestId, data }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const id = Number(findHighestId(data)) + 1;
-    console.log('New Employee ID:', id);
+    console.log("New Employee ID:", id);
     onAddEmployee({
       name: name,
       expanded: true,
@@ -30,10 +30,10 @@ function EmployeeForm({ onAddEmployee, onCancel, findHighestId, data }) {
         title: title,
         id,
       },
-      children: []
+      children: [],
     });
-    setName('');
-    setTitle('');
+    setName("");
+    setTitle("");
     setImage(null);
   };
 
@@ -55,12 +55,11 @@ function EmployeeForm({ onAddEmployee, onCancel, findHighestId, data }) {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
-          <FormInput
-            type="file"
-            onChange={handleImageChange}
-          />
+          <FormInput type="file" onChange={handleImageChange} />
           <FormButton type="submit">Add employee</FormButton>
-          <FormButton type="button" onClick={onCancel}>Cancel</FormButton>
+          <FormButton type="button" onClick={onCancel}>
+            Cancel
+          </FormButton>
         </Form>
       </div>
     </Modal>
