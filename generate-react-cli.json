@@ -1,0 +1,18 @@
+{
+  "usesTypeScript": false,
+  "usesStyledComponents": true,
+  "testLibrary": "None",
+  "component": {
+    "default": {
+      "customTemplates": {
+        "component": "src/generate-react-cli-templates/TemplateName.jsx",
+        "style": "src/generate-react-cli-templates/TemplateName.styles.jsx"
+      },
+      "path": "src/components",
+      "withStyle": true,
+      "withTest": false,
+      "withStory": false,
+      "withLazy": false
+    }
+  }
+}
