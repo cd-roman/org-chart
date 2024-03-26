@@ -1,9 +1,9 @@
 import React from "react";
 import { OrganizationChart } from "primereact/organizationchart";
-import useEmployeeNode from "../employee-node/useEmployeeNode";
-import EmployeeForm from "../add-employee/add-employee.component";
-import EditEmployeeForm from "../edit-employee/edit-employee.component";
-import "./org-chart.styles.scss";
+import useEmployeeNode from "../EmployeeNode/useEmployeeNode";
+import EmployeeForm from "../AddEmployee/AddEmployee";
+import EditEmployeeForm from "../EditEmployeeForm/EditEmployeeForm";
+import "./OrgChart.styles.scss";
 
 function OrgChart() {
   const {

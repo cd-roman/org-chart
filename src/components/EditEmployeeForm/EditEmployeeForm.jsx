@@ -5,7 +5,7 @@ import {
   EditFormInput,
   EditFormButton,
   ImageContainer,
-} from "./edit-employee.styles";
+} from "./EditEmployeeForm.styles";
 
 function EditEmployeeForm({ employee, onEditEmployee, onCancelEdit }) {
   const [name, setName] = useState(employee.name || "");

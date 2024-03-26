@@ -1,15 +1,15 @@
 import React from "react";
-import AddButton from "../add-button/add-button.component";
-import KebabMenu from "../node-menu-icon/node-menu-icon.component";
+import AddButton from "../AddButton/AddButton";
+import NodeMenuIcon from "../NodeMenuIcon/NodeMenuIcon";
 
 import {
   EmployeeNodeContainer,
   ImageContainer,
   EmployeeName,
   EmployeeTitle,
-} from "./employee-node-styles";
+} from "./EmployeeNode.styles";
 
-export function NodeTemplate({
+export function EmployeeNode({
   node,
   deleteNode,
   editNode,
@@ -19,7 +19,7 @@ export function NodeTemplate({
 }) {
   return (
     <EmployeeNodeContainer>
-      <KebabMenu
+      <NodeMenuIcon
         deleteNode={deleteNode}
         editNode={editNode}
         nodeId={node.data.id}

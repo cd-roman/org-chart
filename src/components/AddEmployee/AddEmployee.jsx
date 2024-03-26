@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import placeholderImage from "../../assets/avatar-placeholder.jpg";
-import { Modal, Form, FormInput, FormButton } from "./add-employee.styles";
+import { Modal, Form, FormInput, FormButton } from "./AddEmployee.styles";
 
 function EmployeeForm({ onAddEmployee, onCancel, findHighestId, data }) {
   const [name, setName] = useState("");

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import initialData from "../../initialData.json";
-import { NodeTemplate } from "./employee-node.component";
+import { EmployeeNode } from "./EmployeeNode";
 
 function useEmployeeNode() {
   const [selectedNode, setSelectedNode] = useState(null);
@@ -11,7 +11,7 @@ function useEmployeeNode() {
 
   const nodeTemplate = (node) => {
     return (
-      <NodeTemplate
+      <EmployeeNode
         node={node}
         deleteNode={deleteNode}
         editNode={editNode}
