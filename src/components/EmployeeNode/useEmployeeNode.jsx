@@ -1,13 +1,27 @@
-import React, { useState } from "react";
-import initialData from "../../initialData.json";
+import React, { useState, useEffect } from "react";
 import { EmployeeNode } from "./EmployeeNode";
+import apiService from "../../api/apiService";
+import "../../api/mock";
 
 function useEmployeeNode() {
   const [selectedNode, setSelectedNode] = useState(null);
   const [showAddForm, setShowAddForm] = useState(false);
-  const [data, setData] = useState(initialData);
+  const [data, setData] = useState([]);
   const [showEditForm, setShowEditForm] = useState(false);
   const [editingEmployee, setEditingEmployee] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await apiService.get("/data");
+        setData(response.data); // Set the fetched data to the state
+      } catch (error) {
+        console.error("There was an error!", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const nodeTemplate = (node) => {
     return (
