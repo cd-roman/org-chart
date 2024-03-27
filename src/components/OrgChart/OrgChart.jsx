@@ -16,7 +16,7 @@ function OrgChart() {
     showAddForm,
     onAddEmployee,
     setShowAddForm,
-    findHighestId,
+
     editingEmployee,
     setEditingEmployee,
     showEditForm,
@@ -27,8 +27,6 @@ function OrgChart() {
   return (
     <>
       <div ref={orgChartRef}>
-        {" "}
-        {/* Apply the ref to a container element */}
         {data.length > 0 ? (
           <OrganizationChart value={data} nodeTemplate={nodeTemplate} />
         ) : (
@@ -40,7 +38,6 @@ function OrgChart() {
           onAddEmployee={onAddEmployee}
           onCancel={() => setShowAddForm(false)}
           data={data}
-          findHighestId={findHighestId}
         />
       )}
       {showEditForm && (

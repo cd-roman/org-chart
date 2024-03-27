@@ -124,26 +124,21 @@ function useEmployeeNode() {
     setData(newData);
   };
 
-  const findHighestId = (data) => {
-    let highestId = 0;
-    const checkNode = (node) => {
-      if (node.data.id > highestId) {
-        highestId = node.data.id;
-      }
-      if (node.children) {
-        node.children.forEach(checkNode);
-      }
-    };
-    data.forEach(checkNode);
-    return highestId;
-  };
+  const onAddEmployee = async (newEmployee) => {
+    const parentId = selectedNode ? selectedNode.data.id : null;
+    try {
+      const response = await apiService.post("/employees", {
+        newEmployee,
+        parentId,
+      });
 
-  const onAddEmployee = (newEmployee) => {
-    const highestId = Number(findHighestId(data)) + 1;
-    newEmployee.data.id = highestId;
-    selectedNode.children = [...(selectedNode.children || []), newEmployee];
-    setData([...data]);
-    setShowAddForm(false);
+      // Directly use the updated data from the response
+      setData(response.data);
+
+      setShowAddForm(false); // Close the form
+    } catch (error) {
+      console.error("Error adding new employee:", error);
+    }
   };
 
   return {
@@ -152,7 +147,6 @@ function useEmployeeNode() {
     showAddForm,
     setShowAddForm,
     onAddEmployee,
-    findHighestId,
     editingEmployee,
     setEditingEmployee,
     showEditForm,
