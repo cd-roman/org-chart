@@ -5,6 +5,10 @@ import useZoomAndPan from "../../hooks/useZoomAndPan";
 import EmployeeForm from "../AddEmployee/AddEmployee";
 import EditEmployeeForm from "../EditEmployeeForm/EditEmployeeForm";
 import ZoomControls from "../ZoomControls/ZoomControls";
+import {
+  downloadOrgChartAsPDF,
+  downloadOrgChartAsImage,
+} from "../../utils/orgChartDownloadUtils";
 import "./OrgChart.styles.scss";
 
 function OrgChart() {
@@ -26,6 +30,8 @@ function OrgChart() {
 
   return (
     <>
+      <button onClick={downloadOrgChartAsPDF}>Download PDF</button>
+      <button onClick={downloadOrgChartAsImage}>Download Image</button>
       <ZoomControls onZoomIn={zoomIn} onZoomOut={zoomOut} />
       <div ref={orgChartRef}>
         {data.length > 0 ? (
