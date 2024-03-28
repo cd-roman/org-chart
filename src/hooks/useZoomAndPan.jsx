@@ -17,17 +17,17 @@ const useZoomAndPan = (ref) => {
         container.style.transform = `translate(${pan.x}px, ${pan.y}px) scale(${scale})`;
       };
 
-      const handleKeyDown = (event) => {
-        if (
-          (event.metaKey || event.ctrlKey) &&
-          (event.key === "+" || event.key === "-")
-        ) {
-          event.preventDefault();
-          scale += event.key === "+" ? 0.1 : -0.1;
-          scale = Math.min(Math.max(0.125, scale), 4);
-          container.style.transform = `translate(${pan.x}px, ${pan.y}px) scale(${scale})`;
-        }
-      };
+      // const handleKeyDown = (event) => {
+      //   if (
+      //     (event.metaKey || event.ctrlKey) &&
+      //     (event.key === "+" || event.key === "-")
+      //   ) {
+      //     event.preventDefault();
+      //     scale += event.key === "+" ? 0.1 : -0.1;
+      //     scale = Math.min(Math.max(0.125, scale), 4);
+      //     container.style.transform = `translate(${pan.x}px, ${pan.y}px) scale(${scale})`;
+      //   }
+      // };
 
       const handleMouseDown = (event) => {
         dragging = true;
@@ -48,14 +48,14 @@ const useZoomAndPan = (ref) => {
       };
 
       container.addEventListener("wheel", handleWheel, { passive: false });
-      window.addEventListener("keydown", handleKeyDown);
+      // window.addEventListener("keydown", handleKeyDown);
       container.addEventListener("mousedown", handleMouseDown);
       window.addEventListener("mousemove", handleMouseMove);
       window.addEventListener("mouseup", handleMouseUp);
 
       return () => {
         container.removeEventListener("wheel", handleWheel);
-        window.removeEventListener("keydown", handleKeyDown);
+        // window.removeEventListener("keydown", handleKeyDown);
         container.removeEventListener("mousedown", handleMouseDown);
         window.removeEventListener("mousemove", handleMouseMove);
         window.removeEventListener("mouseup", handleMouseUp);

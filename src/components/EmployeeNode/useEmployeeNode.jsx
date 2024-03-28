@@ -87,41 +87,18 @@ function useEmployeeNode() {
     setShowEditForm(false);
   };
 
-  const deleteNode = (nodeId) => {
-    const newData = JSON.parse(JSON.stringify(data)); // Deep copy of the data
+  const deleteNode = async (nodeId) => {
+    if (data[0] && data[0].data.id === nodeId) {
+      alert("You can't delete the root element");
+      return; // Exit the function to prevent deletion of the root element
+    }
 
-    const findAndDeleteNode = (nodes, parent = null) => {
-      for (let i = 0; i < nodes.length; i++) {
-        if (nodes[i].data.id === nodeId) {
-          const children = nodes[i].children || [];
-          // Handle the case where the node to delete has children
-          if (children.length > 0) {
-            if (parent) {
-              // If there's a parent, splice the children into the parent's children array
-              parent.children = parent.children || [];
-              parent.children.splice(i, 1, ...children);
-            } else {
-              // If there's no parent (root level), splice the children into the newData
-              newData.splice(i, 1, ...children);
-            }
-          } else {
-            // Handle the case where the node to delete has no children
-            if (parent) {
-              parent.children.splice(i, 1); // Remove the node from the parent's children
-            } else {
-              newData.splice(i, 1); // Remove the node from the root level
-            }
-          }
-          return; // Node found and handled, exit the function
-        } else if (nodes[i].children) {
-          // Recursively search for the node in children
-          findAndDeleteNode(nodes[i].children, nodes[i]);
-        }
-      }
-    };
-
-    findAndDeleteNode(newData);
-    setData(newData);
+    try {
+      const response = await apiService.delete(`/employees/${nodeId}`);
+      setData(response.data); // Update state with the returned, updated data structure
+    } catch (error) {
+      console.error("Error deleting the employee:", error);
+    }
   };
 
   const onAddEmployee = async (newEmployee) => {
