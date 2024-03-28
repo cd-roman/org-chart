@@ -84,3 +84,31 @@ mock.onDelete(/\/employees\/\d+/).reply((config) => {
   initialData = findAndDeleteNode([...initialData], idToDelete); // Apply the function to a cloned array of initialData
   return [200, initialData]; // Return the updated data structure
 });
+
+mock.onPatch(/\/employees\/(.+)/).reply((config) => {
+  const id = config.url.match(/\/employees\/(.+)/)[1];
+  const updatedEmployee = JSON.parse(config.data);
+
+  // Function to recursively update the employee in the data structure
+  const updateEmployeeInData = (nodes, updatedEmployee) => {
+    return nodes.map((node) => {
+      if (node.data.id === id) {
+        // Found the node to update
+        return { ...node, ...updatedEmployee }; // Merge updated fields
+      } else if (node.children) {
+        // Recursively update children
+        return {
+          ...node,
+          children: updateEmployeeInData(node.children, updatedEmployee),
+        };
+      }
+      return node;
+    });
+  };
+
+  // Update the employee in the initialData structure
+  initialData = updateEmployeeInData(initialData, updatedEmployee);
+
+  // Respond with the updated data structure
+  return [200, initialData];
+});

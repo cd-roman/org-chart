@@ -59,28 +59,20 @@ function useEmployeeNode() {
     setShowEditForm(true);
   };
 
-  const updateEmployee = (data, updatedEmployee) => {
-    return data.map((employee) => {
-      if (employee.data.id === updatedEmployee.data.id) {
-        return updatedEmployee;
-      }
+  const handleEditEmployee = async (updatedEmployee) => {
+    try {
+      const employeeId = String(updatedEmployee.data.id);
 
-      if (employee.children) {
-        return {
-          ...employee,
-          children: updateEmployee(employee.children, updatedEmployee),
-        };
-      }
-
-      return employee;
-    });
-  };
-
-  const handleEditEmployee = (updatedEmployee) => {
-    const newData = updateEmployee(data, updatedEmployee);
-    setData(newData);
-    setEditingEmployee(null);
-    setShowEditForm(false);
+      const response = await apiService.patch(
+        `/employees/${employeeId}`,
+        updatedEmployee
+      );
+      setData(response.data);
+      setEditingEmployee(null);
+      setShowEditForm(false);
+    } catch (error) {
+      console.error("Error updating the employee:", error);
+    }
   };
 
   const handleCancelEdit = () => {
