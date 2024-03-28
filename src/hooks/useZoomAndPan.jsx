@@ -1,67 +1,73 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useCallback } from "react";
 
 const useZoomAndPan = (ref) => {
+  const scale = useRef(1);
+  const pan = useRef({ x: 0, y: 0 });
+  const dragging = useRef(false);
+  const lastPosition = useRef({ x: null, y: null });
+
+  const setTransform = useCallback(() => {
+    const container = ref.current;
+    if (container) {
+      container.style.transform = `translate(${pan.current.x}px, ${pan.current.y}px) scale(${scale.current})`;
+    }
+  }, [ref]); // Dependencies array is empty, so this callback never changes
+
   useEffect(() => {
-    if (ref.current) {
-      const container = ref.current;
+    const container = ref.current;
 
-      let scale = 1;
-      let pan = { x: 0, y: 0 };
-      let dragging = false;
-      let lastPosition = null;
-
+    if (container) {
       const handleWheel = (event) => {
         event.preventDefault();
-        scale += event.deltaY * -0.01;
-        scale = Math.min(Math.max(0.5, scale), 2);
-        container.style.transform = `translate(${pan.x}px, ${pan.y}px) scale(${scale})`;
+        const newScale = scale.current + event.deltaY * -0.01;
+        scale.current = Math.min(Math.max(0.5, newScale), 2);
+        setTransform();
       };
 
-      // const handleKeyDown = (event) => {
-      //   if (
-      //     (event.metaKey || event.ctrlKey) &&
-      //     (event.key === "+" || event.key === "-")
-      //   ) {
-      //     event.preventDefault();
-      //     scale += event.key === "+" ? 0.1 : -0.1;
-      //     scale = Math.min(Math.max(0.125, scale), 4);
-      //     container.style.transform = `translate(${pan.x}px, ${pan.y}px) scale(${scale})`;
-      //   }
-      // };
-
       const handleMouseDown = (event) => {
-        dragging = true;
-        lastPosition = { x: event.clientX, y: event.clientY };
+        dragging.current = true;
+        lastPosition.current = { x: event.clientX, y: event.clientY };
       };
 
       const handleMouseMove = (event) => {
-        if (dragging) {
-          pan.x += event.clientX - lastPosition.x;
-          pan.y += event.clientY - lastPosition.y;
-          lastPosition = { x: event.clientX, y: event.clientY };
-          container.style.transform = `translate(${pan.x}px, ${pan.y}px) scale(${scale})`;
+        if (dragging.current) {
+          pan.current.x += event.clientX - lastPosition.current.x;
+          pan.current.y += event.clientY - lastPosition.current.y;
+          lastPosition.current = { x: event.clientX, y: event.clientY };
+          setTransform();
         }
       };
 
       const handleMouseUp = () => {
-        dragging = false;
+        dragging.current = false;
       };
 
       container.addEventListener("wheel", handleWheel, { passive: false });
-      // window.addEventListener("keydown", handleKeyDown);
       container.addEventListener("mousedown", handleMouseDown);
       window.addEventListener("mousemove", handleMouseMove);
       window.addEventListener("mouseup", handleMouseUp);
 
+      // Cleanup function
       return () => {
         container.removeEventListener("wheel", handleWheel);
-        // window.removeEventListener("keydown", handleKeyDown);
         container.removeEventListener("mousedown", handleMouseDown);
         window.removeEventListener("mousemove", handleMouseMove);
         window.removeEventListener("mouseup", handleMouseUp);
       };
     }
-  }, [ref]);
+  }, [ref, setTransform]);
+
+  const zoomIn = () => {
+    scale.current = Math.min(scale.current + 0.1, 2);
+    setTransform();
+  };
+
+  const zoomOut = () => {
+    scale.current = Math.max(scale.current - 0.1, 0.5);
+    setTransform();
+  };
+
+  return { zoomIn, zoomOut, setTransform };
 };
 
 export default useZoomAndPan;
