@@ -1,15 +1,14 @@
 import styled from "styled-components";
 
-export const ZoomControlsContainer = styled.div`
+export const DownloadContainer = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   gap: 16px;
   width: 50%;
 `;
 
-export const ZoomControlsButton = styled.button`
+export const DownloadButton = styled.button`
   cursor: pointer;
   z-index: 900;
-  width: 28px;
   height: 28px;
 `;

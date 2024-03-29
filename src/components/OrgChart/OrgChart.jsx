@@ -4,7 +4,7 @@ import useEmployeeNode from "../EmployeeNode/useEmployeeNode";
 import useZoomAndPan from "../../hooks/useZoomAndPan";
 import EmployeeForm from "../AddEmployee/AddEmployee";
 import EditEmployeeForm from "../EditEmployeeForm/EditEmployeeForm";
-import ZoomControls from "../ZoomControls/ZoomControls";
+import OrgChartControls from "../OrgChartControls/OrgChartControls";
 import {
   downloadOrgChartAsPDF,
   downloadOrgChartAsImage,
@@ -30,9 +30,12 @@ function OrgChart() {
 
   return (
     <>
-      <button onClick={downloadOrgChartAsPDF}>Download PDF</button>
-      <button onClick={downloadOrgChartAsImage}>Download Image</button>
-      <ZoomControls onZoomIn={zoomIn} onZoomOut={zoomOut} />
+      <OrgChartControls
+        onDownloadPDF={downloadOrgChartAsPDF}
+        onDownloadImage={downloadOrgChartAsImage}
+        onZoomIn={zoomIn}
+        onZoomOut={zoomOut}
+      />
       <div ref={orgChartRef}>
         {data.length > 0 ? (
           <OrganizationChart value={data} nodeTemplate={nodeTemplate} />
