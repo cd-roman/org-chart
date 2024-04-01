@@ -36,8 +36,11 @@ const convertAllImagesToBase64 = (container, callback) => {
   });
 };
 
-export const downloadOrgChartAsPDF = async () => {
-  const orgChartElement = document.querySelector(".p-organizationchart");
+export const downloadOrgChartAsPDF = async (resetZoom, setZoom) => {
+  const orgChartElement = document.querySelector(".p-organizationchart-table");
+
+  // Save the current zoom level and reset to initial state
+  const currentZoom = resetZoom();
 
   // First convert all images within the org chart to Base64
   convertAllImagesToBase64(orgChartElement, async () => {
@@ -52,6 +55,9 @@ export const downloadOrgChartAsPDF = async () => {
       orientation: "landscape",
     });
 
+    // Restore the zoom level
+    setZoom(currentZoom);
+
     const imgProps = pdf.getImageProperties(imgData);
     const pdfWidth = pdf.internal.pageSize.getWidth();
     const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
@@ -61,8 +67,11 @@ export const downloadOrgChartAsPDF = async () => {
   });
 };
 
-export const downloadOrgChartAsImage = async () => {
-  const orgChartElement = document.querySelector(".p-organizationchart"); // Specify the exact container
+export const downloadOrgChartAsImage = async (resetZoom, setZoom) => {
+  const orgChartElement = document.querySelector(".p-organizationchart-table"); // Specify the exact container
+
+  // Save the current zoom level and reset to initial state
+  const currentZoom = resetZoom();
 
   // First convert all images within the org chart to Base64
   convertAllImagesToBase64(orgChartElement, async () => {
@@ -71,7 +80,10 @@ export const downloadOrgChartAsImage = async () => {
       useCORS: true,
       allowTaint: true,
     });
-    // Proceed with downloading the image
+
+    // Restore the zoom level
+    setZoom(currentZoom);
+
     const image = canvas
       .toDataURL("image/png")
       .replace("image/png", "image/octet-stream");

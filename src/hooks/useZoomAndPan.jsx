@@ -6,12 +6,26 @@ const useZoomAndPan = (ref) => {
   const dragging = useRef(false);
   const lastPosition = useRef({ x: null, y: null });
 
+  const initialScale = 1; // Initial zoom level
+
+  const resetZoom = () => {
+    const currentScale = scale.current; // Save the current zoom level
+    scale.current = initialScale; // Reset zoom level to initial state
+    setTransform();
+    return currentScale; // Return the saved zoom level
+  };
+
+  const setZoom = (newScale) => {
+    scale.current = newScale; // Set zoom level to specified value
+    setTransform();
+  };
+
   const setTransform = useCallback(() => {
     const container = ref.current;
     if (container) {
       container.style.transform = `translate(${pan.current.x}px, ${pan.current.y}px) scale(${scale.current})`;
     }
-  }, [ref]); // Dependencies array is empty, so this callback never changes
+  }, [ref]);
 
   useEffect(() => {
     const container = ref.current;
@@ -67,7 +81,7 @@ const useZoomAndPan = (ref) => {
     setTransform();
   };
 
-  return { zoomIn, zoomOut, setTransform };
+  return { zoomIn, zoomOut, setTransform, resetZoom, setZoom };
 };
 
 export default useZoomAndPan;

@@ -13,7 +13,7 @@ import "./OrgChart.styles.scss";
 
 function OrgChart() {
   const orgChartRef = useRef(null); // Create a ref for the organization chart
-  const { zoomIn, zoomOut } = useZoomAndPan(orgChartRef);
+  const { zoomIn, zoomOut, setZoom, resetZoom } = useZoomAndPan(orgChartRef);
 
   const {
     data,
@@ -31,8 +31,8 @@ function OrgChart() {
   return (
     <>
       <OrgChartControls
-        onDownloadPDF={downloadOrgChartAsPDF}
-        onDownloadImage={downloadOrgChartAsImage}
+        onDownloadPDF={() => downloadOrgChartAsPDF(resetZoom, setZoom)}
+        onDownloadImage={() => downloadOrgChartAsImage(resetZoom, setZoom)}
         onZoomIn={zoomIn}
         onZoomOut={zoomOut}
       />
