@@ -49,20 +49,34 @@ export const downloadOrgChartAsPDF = async (resetZoom, setZoom) => {
       useCORS: true,
       allowTaint: true,
     });
-    const imgData = canvas.toDataURL("image/png");
-
-    const pdf = new jsPDF({
-      orientation: "landscape",
-    });
+    const imgData = canvas.toDataURL("image/jpeg");
 
     // Restore the zoom level
     setZoom(currentZoom);
 
-    const imgProps = pdf.getImageProperties(imgData);
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+    // Determine the orientation based on the aspect ratio of the orgChartElement
+    const orientation =
+      orgChartElement.offsetWidth > orgChartElement.offsetHeight
+        ? "landscape"
+        : "portrait";
 
-    pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+    // Create a new jsPDF instance
+    const pdf = new jsPDF(orientation, undefined, "a4");
+
+    // Calculate the width and height that maintains the aspect ratio of the original image
+    const aspectRatio = canvas.width / canvas.height;
+    let pdfWidth = pdf.internal.pageSize.getWidth();
+    let pdfHeight = pdf.internal.pageSize.getHeight();
+    if (pdfWidth / aspectRatio > pdfHeight) {
+      pdfWidth = pdfHeight * aspectRatio;
+    } else {
+      pdfHeight = pdfWidth / aspectRatio;
+    }
+
+    // Add the image to the PDF
+    pdf.addImage(imgData, "JPEG", 0, 0, pdfWidth, pdfHeight);
+
+    // Save the PDF
     pdf.save("OrgChart.pdf");
   });
 };
@@ -85,10 +99,10 @@ export const downloadOrgChartAsImage = async (resetZoom, setZoom) => {
     setZoom(currentZoom);
 
     const image = canvas
-      .toDataURL("image/png")
-      .replace("image/png", "image/octet-stream");
+      .toDataURL("image/jpeg")
+      .replace("image/jpeg", "image/octet-stream");
     const link = document.createElement("a");
-    link.download = "OrgChart.png";
+    link.download = "OrgChart.jpeg";
     link.href = image;
     link.click();
   });
