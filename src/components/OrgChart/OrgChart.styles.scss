@@ -1,3 +1,11 @@
+.orgchart-visible {
+  visibility: visible;
+}
+
+.orgchart-hidden {
+  visibility: hidden;
+}
+
 .p-organizationchart-node-content {
   &:hover {
     button {

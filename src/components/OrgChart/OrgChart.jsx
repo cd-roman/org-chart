@@ -51,7 +51,7 @@ function OrgChart() {
           <OrganizationChart
             value={data}
             nodeTemplate={nodeTemplate}
-            style={{ visibility: isChartVisible ? "visible" : "hidden" }}
+            className={isChartVisible ? "orgchart-visible" : "orgchart-hidden"}
           />
         ) : (
           <Spinner />
