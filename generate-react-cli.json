@@ -1,5 +1,5 @@
 {
-  "usesTypeScript": false,
+  "usesTypeScript": true,
   "usesStyledComponents": true,
   "testLibrary": "None",
   "component": {
