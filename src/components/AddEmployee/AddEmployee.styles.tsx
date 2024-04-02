@@ -70,10 +70,10 @@ export const FormButton = styled.button`
 `;
 
 export const CancelButton = styled(FormButton)`
-  background-color: #a0a0a0; // grey background
-  color: #fff; // white text
+  background-color: #a0a0a0;
+  color: #fff;
 
   &:hover {
-    background-color: #898989; // slightly darker grey on hover
+    background-color: ;
   }
 `;

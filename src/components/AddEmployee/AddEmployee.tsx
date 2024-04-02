@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import placeholderImage from "../../assets/avatar-placeholder.jpg";
 import {
   Modal,
@@ -9,23 +9,38 @@ import {
   CancelButton,
 } from "./AddEmployee.styles";
 
-function EmployeeForm({ onAddEmployee, onCancel }) {
+interface Node {
+  name: string;
+  expanded: boolean;
+  data: {
+    avatar: string;
+    title: string;
+  };
+  children?: Node[];
+}
+
+interface EmployeeFormProps {
+  onAddEmployee: (node: Node) => void;
+  onCancel: () => void;
+}
+
+const EmployeeForm: React.FC<EmployeeFormProps> = ({ onAddEmployee, onCancel }) => {
   const [name, setName] = useState("");
   const [title, setTitle] = useState("");
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState<string | null>(null);
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files && e.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        setImage(e.target.result);
+        setImage(e.target?.result as string);
       };
       reader.readAsDataURL(file);
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onAddEmployee({
       name: name,
