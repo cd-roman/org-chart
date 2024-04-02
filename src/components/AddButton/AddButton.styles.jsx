@@ -1,7 +1,9 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const AddNewEmployeeButton = styled.button`
-  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0s linear 0.3s;
   position: absolute;
   right: 8px;
   bottom: 8px;
@@ -12,7 +14,7 @@ const AddNewEmployeeButton = styled.button`
   line-height: 24px;
   text-align: center;
   border: none;
-  background: blue;
+  background: #1e6bd0;
   color: white;
   cursor: pointer;
 `;

@@ -1,10 +1,13 @@
 .p-organizationchart-node-content {
   &:hover {
     button {
-      display: block;
+      opacity: 1;
+      visibility: visible;
+      transition-delay: 0s;
     }
   }
 }
+
 
 .p-organizationchart-node-content .p-node-toggler {
   transform: rotate(180deg);

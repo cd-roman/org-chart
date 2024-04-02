@@ -7,8 +7,12 @@ import {
 const DownloadButtonsContainer = ({ onDownloadPDF, onDownloadImage }) => {
   return (
     <DownloadContainer>
-      <DownloadButton onClick={onDownloadPDF}>Download PDF</DownloadButton>
-      <DownloadButton onClick={onDownloadImage}>Download Image</DownloadButton>
+      <DownloadButton onClick={onDownloadPDF}>
+        Download PDF<i className="pi pi-download"></i>
+      </DownloadButton>
+      <DownloadButton onClick={onDownloadImage}>
+        Download Image<i className="pi pi-download"></i>
+      </DownloadButton>
     </DownloadContainer>
   );
 };

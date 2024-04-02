@@ -1,4 +1,5 @@
 import React from "react";
+import "primeicons/primeicons.css";
 import {
   ZoomControlsContainer,
   ZoomControlsButton,
@@ -7,8 +8,12 @@ import {
 const ZoomControls = ({ onZoomIn, onZoomOut }) => {
   return (
     <ZoomControlsContainer className="zoom-controls">
-      <ZoomControlsButton onClick={onZoomIn}>+</ZoomControlsButton>
-      <ZoomControlsButton onClick={onZoomOut}>-</ZoomControlsButton>
+      <ZoomControlsButton onClick={onZoomIn}>
+        <i className="pi pi-plus"></i>
+      </ZoomControlsButton>
+      <ZoomControlsButton onClick={onZoomOut}>
+        <i className="pi pi-minus"></i>
+      </ZoomControlsButton>
     </ZoomControlsContainer>
   );
 };

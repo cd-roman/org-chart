@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const EmployeeNodeContainer = styled.div`
   display: flex;
@@ -20,9 +20,9 @@ export const ImageContainer = styled.div`
 `;
 
 export const EmployeeName = styled.span`
-    font-weight: bold;
+  font-weight: bold;
 `;
 
-export const EmployeeTitle = styled.span`  
-    padding-top: 4px;
+export const EmployeeTitle = styled.span`
+  padding-top: 4px;
 `;
