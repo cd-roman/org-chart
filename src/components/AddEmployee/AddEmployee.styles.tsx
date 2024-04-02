@@ -74,6 +74,6 @@ export const CancelButton = styled(FormButton)`
   color: #fff;
 
   &:hover {
-    background-color: ;
+    background-color: #898989;
   }
 `;

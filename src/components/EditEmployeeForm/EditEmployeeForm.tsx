@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, ChangeEvent, FormEvent } from "react";
 import {
   EditModal,
   EditForm,
@@ -9,23 +9,39 @@ import {
   ImageContainer,
 } from "./EditEmployeeForm.styles";
 
-function EditEmployeeForm({ employee, onEditEmployee, onCancelEdit }) {
+interface Employee {
+  name: string;
+  data: {
+    title: string;
+    avatar: string;
+  };
+}
+
+interface EditEmployeeFormProps {
+  employee: Employee;
+  onEditEmployee: (employee: Employee) => void;
+  onCancelEdit: () => void;
+}
+
+const EditEmployeeForm: React.FC<EditEmployeeFormProps> = ({ employee, onEditEmployee, onCancelEdit }) => {
   const [name, setName] = useState(employee.name || "");
   const [title, setTitle] = useState(employee.data.title || "");
   const [image, setImage] = useState(employee.data.avatar || "");
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setImage(e.target.result);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
+const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const file = e.target.files && e.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = (e: ProgressEvent<FileReader>) => {
+      if (e.target?.result) {
+        setImage(e.target.result as string);
+      }
+    };
+    reader.readAsDataURL(file);
+  }
+};
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onEditEmployee({
       ...employee,

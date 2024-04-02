@@ -3,17 +3,34 @@ import { EmployeeNode } from "./EmployeeNode";
 import apiService from "../../api/apiService";
 import "../../api/mock";
 
+interface Node {
+  name: string;
+  expanded: boolean;
+  data: {
+    id: string;
+    avatar: string;
+    title: string;
+  };
+  children?: Node[];
+}
+
+interface NewEmployee {
+  name: string;
+  title: string;
+  avatar: string;
+}
+
 function useEmployeeNode() {
-  const [selectedNode, setSelectedNode] = useState(null);
+  const [selectedNode, setSelectedNode] = useState<Node | null>(null);
   const [showAddForm, setShowAddForm] = useState(false);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<Node[]>([]);
   const [showEditForm, setShowEditForm] = useState(false);
-  const [editingEmployee, setEditingEmployee] = useState(null);
+  const [editingEmployee, setEditingEmployee] = useState<Node | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await apiService.get("/data");
+        const response = await apiService.get<Node[]>("/data");
         setData(response.data); // Set the fetched data to the state
       } catch (error) {
         console.error("There was an error!", error);
@@ -23,12 +40,12 @@ function useEmployeeNode() {
     fetchData();
   }, []);
 
-  const nodeTemplate = (node) => {
+  const nodeTemplate = (node: Node) => {
     return (
       <EmployeeNode
         node={node}
         deleteNode={deleteNode}
-        editNode={editNode}
+        editNode={() => editNode(node.data.id)}
         setSelectedNode={setSelectedNode}
         setShowAddForm={setShowAddForm}
         setEditingEmployee={setEditingEmployee}
@@ -36,7 +53,7 @@ function useEmployeeNode() {
     );
   };
 
-  const findEmployee = (data, nodeId) => {
+  const findEmployee = (data: Node[], nodeId: string): Node | null => {
     for (let employee of data) {
       if (employee.data.id === nodeId) {
         return employee;
@@ -53,17 +70,19 @@ function useEmployeeNode() {
     return null;
   };
 
-  const editNode = (nodeId) => {
+  const editNode = (nodeId: string) => {
     const employee = findEmployee(data, nodeId);
-    setEditingEmployee(employee);
-    setShowEditForm(true);
+    if (employee) {
+      setEditingEmployee(employee);
+      setShowEditForm(true);
+    }
   };
 
-  const handleEditEmployee = async (updatedEmployee) => {
+  const handleEditEmployee = async (updatedEmployee: Node) => {
     try {
       const employeeId = String(updatedEmployee.data.id);
-
-      const response = await apiService.patch(
+  
+      const response = await apiService.patch<Node[]>(
         `/employees/${employeeId}`,
         updatedEmployee
       );
@@ -79,24 +98,24 @@ function useEmployeeNode() {
     setShowEditForm(false);
   };
 
-  const deleteNode = async (nodeId) => {
+  const deleteNode = async (nodeId: string) => {
     if (data[0] && data[0].data.id === nodeId) {
       alert("You can't delete the root element");
       return; // Exit the function to prevent deletion of the root element
     }
 
     try {
-      const response = await apiService.delete(`/employees/${nodeId}`);
+      const response = await apiService.delete<Node[]>(`/employees/${nodeId}`);
       setData(response.data); // Update state with the returned, updated data structure
     } catch (error) {
       console.error("Error deleting the employee:", error);
     }
   };
 
-  const onAddEmployee = async (newEmployee) => {
+  const onAddEmployee = async (newEmployee: NewEmployee) => {
     const parentId = selectedNode ? selectedNode.data.id : null;
     try {
-      const response = await apiService.post("/employees", {
+      const response = await apiService.post<Node[]>("/employees", {
         newEmployee,
         parentId,
       });
