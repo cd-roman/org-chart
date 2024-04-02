@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import placeholderImage from "../../assets/avatar-placeholder.jpg";
-import { Modal, Form, FormInput, FormButton } from "./AddEmployee.styles";
+import {
+  Modal,
+  Form,
+  FormInput,
+  FormImageInput,
+  FormButton,
+  CancelButton,
+} from "./AddEmployee.styles";
 
 function EmployeeForm({ onAddEmployee, onCancel }) {
   const [name, setName] = useState("");
@@ -53,11 +60,11 @@ function EmployeeForm({ onAddEmployee, onCancel }) {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
-          <FormInput type="file" onChange={handleImageChange} />
+          <FormImageInput type="file" onChange={handleImageChange} />
           <FormButton type="submit">Add employee</FormButton>
-          <FormButton type="button" onClick={onCancel}>
+          <CancelButton type="button" onClick={onCancel}>
             Cancel
-          </FormButton>
+          </CancelButton>
         </Form>
       </div>
     </Modal>

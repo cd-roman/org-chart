@@ -3,7 +3,9 @@ import {
   EditModal,
   EditForm,
   EditFormInput,
+  FormImageInput,
   EditFormButton,
+  CancelButton,
   ImageContainer,
 } from "./EditEmployeeForm.styles";
 
@@ -62,15 +64,15 @@ function EditEmployeeForm({ employee, onEditEmployee, onCancelEdit }) {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
-          <EditFormInput
+          <FormImageInput
             name="avatar"
             type="file"
             onChange={handleImageChange}
           />
           <EditFormButton type="submit">Save</EditFormButton>
-          <EditFormButton type="button" onClick={onCancelEdit}>
+          <CancelButton type="button" onClick={onCancelEdit}>
             Cancel
-          </EditFormButton>
+          </CancelButton>
         </EditForm>
       </div>
     </EditModal>

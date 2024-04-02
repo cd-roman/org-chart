@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const EditModal = styled.div`
   position: fixed;
@@ -11,13 +11,14 @@ export const EditModal = styled.div`
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0, 0, 0, 0.4);
   cursor: default;
 
   .modal-content {
-    padding: 48px;
-    background-color: #fefefe;
-    border: 1px solid #888;
+    padding: 60px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     width: 400px;
   }
 `;
@@ -26,19 +27,7 @@ export const EditForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
-
-export const EditFormInput = styled.input`
-  margin-bottom: 16px;
-  width: 200px;
-`;
-
-export const EditFormButton = styled.button`
-  margin-top: 20px;
-  max-width: 160px;
-  background-color: #898989;
-  color: white;
-  cursor: pointer;
+  width: 100%;
 `;
 
 export const ImageContainer = styled.div`
@@ -51,5 +40,54 @@ export const ImageContainer = styled.div`
     height: 100%;
     object-fit: cover;
     border-radius: 48px;
+  }
+`;
+
+export const EditFormInput = styled.input`
+  margin-bottom: 20px;
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+    border-color: #1877f2;
+  }
+`;
+
+export const FormImageInput = styled(EditFormInput)`
+  padding: 0;
+  border: none;
+
+  &:focus {
+    border: 1px solid #1877f2;
+    outline: none;
+  }
+`;
+
+export const EditFormButton = styled.button`
+  margin-top: 20px;
+  width: 100%;
+  padding: 10px 0;
+  background-color: #1877f2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #165fca;
+  }
+`;
+
+export const CancelButton = styled(EditFormButton)`
+  background-color: #a0a0a0;
+  color: #fff;
+
+  &:hover {
+    background-color: #898989;
   }
 `;
