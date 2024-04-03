@@ -34,7 +34,7 @@ export const EmployeeNode: React.FC<EmployeeNodeProps> = ({
       <NodeMenuIcon
         deleteNode={deleteNode}
         editNode={editNode}
-        nodeId={node.data.id}
+        node={node}
         setEditingEmployee={setEditingEmployee}
       />
       <ImageContainer>

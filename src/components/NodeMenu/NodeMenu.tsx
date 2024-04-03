@@ -1,10 +1,11 @@
 import React from "react";
 import { NodeModalMenu, NodeModalMenuItem } from "./NodeMenu.styles";
+import { NodeObject } from "../../types";
 
 interface NodeMenuProps {
-  setEditingEmployee: (employee: Node) => void;
+  setEditingEmployee: (employee: NodeObject) => void;
   editNode: (nodeId: string) => void;
-  employee: Node;
+  employee: NodeObject;
   deleteNode: (nodeId: string) => void;
   nodeId: string;
 }
