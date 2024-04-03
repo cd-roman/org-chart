@@ -1,11 +1,16 @@
-import React from "react";
-import "primeicons/primeicons.css";
+import React from 'react';
+import 'primeicons/primeicons.css';
 import {
   ZoomControlsContainer,
   ZoomControlsButton,
-} from "./ZoomControls.styles.jsx";
+} from './ZoomControls.styles';
 
-const ZoomControls = ({ onZoomIn, onZoomOut }) => {
+interface ZoomControlsProps {
+  onZoomIn: () => void;
+  onZoomOut: () => void;
+}
+
+const ZoomControls: React.FC<ZoomControlsProps> = ({ onZoomIn, onZoomOut }) => {
   return (
     <ZoomControlsContainer className="zoom-controls">
       <ZoomControlsButton onClick={onZoomIn}>

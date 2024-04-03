@@ -3,7 +3,14 @@ import DownloadButtonsContainer from "../DownloadButtonsContainer/DownloadButton
 import ZoomControls from "../ZoomControls/ZoomControls";
 import { ControlsContainer } from "./OrgChartControls.styles";
 
-const OrgChartControls = ({
+interface OrgChartControlsProps {
+  onDownloadPDF: () => void;
+  onDownloadImage: () => void;
+  onZoomIn: () => void;
+  onZoomOut: () => void;
+}
+
+const OrgChartControls: React.FC<OrgChartControlsProps> = ({
   onDownloadPDF,
   onDownloadImage,
   onZoomIn,
