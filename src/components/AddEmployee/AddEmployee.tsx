@@ -9,14 +9,7 @@ import {
   CancelButton,
 } from "./AddEmployee.styles";
 
-interface NewEmployeeData {
-  name: string;
-  expanded: boolean;
-  data: {
-    avatar: string;
-    title: string;
-  };
-}
+import { NewEmployeeData } from "../../types";
 
 interface EmployeeFormProps {
   onAddEmployee: (newEmployeeData: NewEmployeeData) => void;

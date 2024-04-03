@@ -3,13 +3,7 @@ import { EmployeeNode } from "./EmployeeNode";
 import apiService from "../../api/apiService";
 import "../../api/mock";
 
-import { NodeObject } from "../../types";
-
-interface NewEmployee {
-  name: string;
-  title: string;
-  avatar: string;
-}
+import { NodeObject, NewEmployeeData } from "../../types";
 
 function useEmployeeNode() {
   const [selectedNode, setSelectedNode] = useState<NodeObject | null>(null);
@@ -103,7 +97,7 @@ function useEmployeeNode() {
     }
   };
 
-  const onAddEmployee = async (newEmployee: NewEmployee) => {
+  const onAddEmployee = async (newEmployee: NewEmployeeData) => {
     const parentId = selectedNode ? selectedNode.data.id : null;
     try {
       const response = await apiService.post<NodeObject[]>("/employees", {

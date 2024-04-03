@@ -12,8 +12,8 @@ import {
 } from "../../utils/orgChartDownloadUtils";
 import "./OrgChart.styles.scss";
 
-function OrgChart() {
-  const orgChartRef = useRef(null); // Create a ref for the organization chart
+const OrgChart: React.FC = () => {
+  const orgChartRef = useRef<HTMLDivElement>(null); // Create a ref for the organization chart
   const { zoomIn, zoomOut, setZoom, resetZoom } = useZoomAndPan(orgChartRef);
   const [isChartVisible, setIsChartVisible] = useState(false);
 
@@ -32,7 +32,6 @@ function OrgChart() {
     onAddEmployee,
     setShowAddForm,
     editingEmployee,
-    setEditingEmployee,
     showEditForm,
     setShowEditForm,
     handleEditEmployee,
@@ -61,16 +60,13 @@ function OrgChart() {
         <EmployeeForm
           onAddEmployee={onAddEmployee}
           onCancel={() => setShowAddForm(false)}
-          data={data}
         />
       )}
-      {showEditForm && (
+      {showEditForm && editingEmployee && (
         <EditEmployeeForm
           employee={editingEmployee}
-          setEditingEmployee={setEditingEmployee}
           onEditEmployee={handleEditEmployee}
           onCancelEdit={() => {
-            setEditingEmployee(null);
             setShowEditForm(false);
           }}
         />

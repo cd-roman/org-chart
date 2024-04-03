@@ -8,3 +8,12 @@ export interface NodeObject {
   };
   children?: NodeObject[];
 }
+
+export interface NewEmployeeData {
+  name: string;
+  expanded: boolean;
+  data: {
+    avatar: string;
+    title: string;
+  };
+}
