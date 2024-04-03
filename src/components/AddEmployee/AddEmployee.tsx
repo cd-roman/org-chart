@@ -9,18 +9,17 @@ import {
   CancelButton,
 } from "./AddEmployee.styles";
 
-interface Node {
+interface NewEmployeeData {
   name: string;
   expanded: boolean;
   data: {
     avatar: string;
     title: string;
   };
-  children?: Node[];
 }
 
 interface EmployeeFormProps {
-  onAddEmployee: (node: Node) => void;
+  onAddEmployee: (newEmployeeData: NewEmployeeData) => void;
   onCancel: () => void;
 }
 
@@ -48,8 +47,7 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({ onAddEmployee, onCancel }) 
       data: {
         avatar: image || placeholderImage,
         title: title,
-      },
-      children: [],
+      }
     });
     // Reset form fields after submission
     setName("");
@@ -63,14 +61,18 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({ onAddEmployee, onCancel }) 
         <Form onSubmit={handleSubmit}>
           <FormInput
             type="text"
+            name="name"
             placeholder="Name"
+            autoComplete="none"
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
           <FormInput
             type="text"
+            name="title"
             placeholder="Title"
+            autoComplete="none"
             required
             value={title}
             onChange={(e) => setTitle(e.target.value)}

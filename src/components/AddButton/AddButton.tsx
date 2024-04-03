@@ -1,21 +1,11 @@
 import React from "react";
 import AddNewEmployeeButton from "./AddButton.styles";
-
-interface Node {
-  name: string;
-  expanded: boolean;
-  data: {
-    id: string;
-    avatar: string;
-    title: string;
-  };
-  children?: Node[];
-}
+import { NodeObject } from "../../types";
 
 interface AddButtonProps {
-  setSelectedNode: (node: Node) => void;
+  setSelectedNode: (node: NodeObject) => void;
   setShowAddForm: (show: boolean) => void;
-  node: Node;
+  node: NodeObject;
 }
 
 const AddButton: React.FC<AddButtonProps> = ({ setSelectedNode, setShowAddForm, node }) => {

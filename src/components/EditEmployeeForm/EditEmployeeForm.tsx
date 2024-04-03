@@ -9,17 +9,11 @@ import {
   ImageContainer,
 } from "./EditEmployeeForm.styles";
 
-interface Employee {
-  name: string;
-  data: {
-    title: string;
-    avatar: string;
-  };
-}
+import { NodeObject } from "../../types";
 
 interface EditEmployeeFormProps {
-  employee: Employee;
-  onEditEmployee: (employee: Employee) => void;
+  employee: NodeObject;
+  onEditEmployee: (employee: NodeObject) => void;
   onCancelEdit: () => void;
 }
 
@@ -46,6 +40,7 @@ const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     onEditEmployee({
       ...employee,
       name: name,
+      expanded: true,
       data: {
         ...employee.data,
         avatar: image,

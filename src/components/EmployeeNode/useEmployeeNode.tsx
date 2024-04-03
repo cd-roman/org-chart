@@ -3,16 +3,7 @@ import { EmployeeNode } from "./EmployeeNode";
 import apiService from "../../api/apiService";
 import "../../api/mock";
 
-interface Node {
-  name: string;
-  expanded: boolean;
-  data: {
-    id: string;
-    avatar: string;
-    title: string;
-  };
-  children?: Node[];
-}
+import { NodeObject } from "../../types";
 
 interface NewEmployee {
   name: string;
@@ -21,16 +12,16 @@ interface NewEmployee {
 }
 
 function useEmployeeNode() {
-  const [selectedNode, setSelectedNode] = useState<Node | null>(null);
+  const [selectedNode, setSelectedNode] = useState<NodeObject | null>(null);
   const [showAddForm, setShowAddForm] = useState(false);
-  const [data, setData] = useState<Node[]>([]);
+  const [data, setData] = useState<NodeObject[]>([]);
   const [showEditForm, setShowEditForm] = useState(false);
-  const [editingEmployee, setEditingEmployee] = useState<Node | null>(null);
+  const [editingEmployee, setEditingEmployee] = useState<NodeObject | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await apiService.get<Node[]>("/data");
+        const response = await apiService.get<NodeObject[]>("/data");
         setData(response.data); // Set the fetched data to the state
       } catch (error) {
         console.error("There was an error!", error);
@@ -40,7 +31,7 @@ function useEmployeeNode() {
     fetchData();
   }, []);
 
-  const nodeTemplate = (node: Node) => {
+  const nodeTemplate = (node: NodeObject) => {
     return (
       <EmployeeNode
         node={node}
@@ -53,7 +44,7 @@ function useEmployeeNode() {
     );
   };
 
-  const findEmployee = (data: Node[], nodeId: string): Node | null => {
+  const findEmployee = (data: NodeObject[], nodeId: string): NodeObject | null => {
     for (let employee of data) {
       if (employee.data.id === nodeId) {
         return employee;
@@ -78,11 +69,11 @@ function useEmployeeNode() {
     }
   };
 
-  const handleEditEmployee = async (updatedEmployee: Node) => {
+  const handleEditEmployee = async (updatedEmployee: NodeObject) => {
     try {
       const employeeId = String(updatedEmployee.data.id);
   
-      const response = await apiService.patch<Node[]>(
+      const response = await apiService.patch<NodeObject[]>(
         `/employees/${employeeId}`,
         updatedEmployee
       );
@@ -105,7 +96,7 @@ function useEmployeeNode() {
     }
 
     try {
-      const response = await apiService.delete<Node[]>(`/employees/${nodeId}`);
+      const response = await apiService.delete<NodeObject[]>(`/employees/${nodeId}`);
       setData(response.data); // Update state with the returned, updated data structure
     } catch (error) {
       console.error("Error deleting the employee:", error);
@@ -115,7 +106,7 @@ function useEmployeeNode() {
   const onAddEmployee = async (newEmployee: NewEmployee) => {
     const parentId = selectedNode ? selectedNode.data.id : null;
     try {
-      const response = await apiService.post<Node[]>("/employees", {
+      const response = await apiService.post<NodeObject[]>("/employees", {
         newEmployee,
         parentId,
       });
