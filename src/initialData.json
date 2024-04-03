@@ -22,7 +22,7 @@
                         "expanded": true,
                         "data": {
                             "avatar": "https://live.staticflickr.com/65535/53605161310_aa8238333a_o.jpg",
-                            "title": "Chief Information Officer",
+                            "title": "Chief Operations Officer",
                             "id": "3"
                         }
                     },
@@ -53,10 +53,50 @@
                             "avatar": "https://live.staticflickr.com/65535/53605161310_aa8238333a_o.jpg",
                             "title": "CTO",
                             "id": "6"
-                        }
+                        },
+                        "children": [
+                            {
+                                "name": "Jimmy O'Connell",
+                                "expanded": true,
+                                "data": {
+                                    "avatar": "https://live.staticflickr.com/65535/53605161310_aa8238333a_o.jpg",
+                                    "title": "Back-end Developer",
+                                    "id": "8"
+                                }
+                            },
+                            {
+                                "name": "Anna Johnson",
+                                "expanded": true,
+                                "data": {
+                                    "avatar": "https://live.staticflickr.com/65535/53605161310_aa8238333a_o.jpg",
+                                    "title": "Front-end Developer",
+                                    "id": "9"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Andrii Stepanenko",
+                        "expanded": true,
+                        "data": {
+                            "avatar": "https://live.staticflickr.com/65535/53605161310_aa8238333a_o.jpg",
+                            "title": "Head of Product",
+                            "id": "7"
+                        }, "children": [                    
+                            {
+                                "name": "Tim Hook",
+                                "expanded": true,
+                                "data": {
+                                    "avatar": "https://live.staticflickr.com/65535/53605161310_aa8238333a_o.jpg",
+                                    "title": "Product Designer",
+                                    "id": "10"
+                                }
+                            }
+                        ]
                     }
                 ]
             }
         ]
     }
 ]
+

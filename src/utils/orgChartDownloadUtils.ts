@@ -2,7 +2,10 @@ import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
 // This function converts an image to Base64
-const convertImageToBase64 = (img, callback) => {
+const convertImageToBase64 = (
+  img: HTMLImageElement,
+  callback: (result: string | ArrayBuffer | null) => void
+): void => {
   const xhr = new XMLHttpRequest();
   xhr.onload = function () {
     const reader = new FileReader();
@@ -16,7 +19,10 @@ const convertImageToBase64 = (img, callback) => {
   xhr.send();
 };
 
-const convertAllImagesToBase64 = (container, callback) => {
+const convertAllImagesToBase64 = (
+  container: HTMLElement,
+  callback: () => void
+): void => {
   const images = container.getElementsByTagName("img");
   let imagesToLoad = images.length;
 
@@ -27,7 +33,7 @@ const convertAllImagesToBase64 = (container, callback) => {
 
   Array.from(images).forEach((img) => {
     convertImageToBase64(img, (base64) => {
-      img.src = base64;
+      img.src = base64 as string;
       imagesToLoad -= 1;
       if (imagesToLoad === 0) {
         callback(); // Invoke the callback when all images are converted
@@ -36,8 +42,17 @@ const convertAllImagesToBase64 = (container, callback) => {
   });
 };
 
-export const downloadOrgChartAsPDF = async (resetZoom, setZoom) => {
-  const orgChartElement = document.querySelector(".p-organizationchart-table");
+export const downloadOrgChartAsPDF = async (
+  resetZoom: () => number,
+  setZoom: (newScale: number) => void
+): Promise<void> => {
+  const orgChartElement = document.querySelector(
+    ".p-organizationchart-table"
+  ) as HTMLElement;
+
+  if (!orgChartElement) {
+    return;
+  }
 
   // Save the current zoom level and reset to initial state
   const currentZoom = resetZoom();
@@ -49,7 +64,7 @@ export const downloadOrgChartAsPDF = async (resetZoom, setZoom) => {
       useCORS: true,
       allowTaint: true,
     });
-    const imgData = canvas.toDataURL("image/jpeg");
+    const imgData = canvas.toDataURL("image/jpeg", 1);
 
     // Restore the zoom level
     setZoom(currentZoom);
@@ -81,8 +96,17 @@ export const downloadOrgChartAsPDF = async (resetZoom, setZoom) => {
   });
 };
 
-export const downloadOrgChartAsImage = async (resetZoom, setZoom) => {
-  const orgChartElement = document.querySelector(".p-organizationchart-table"); // Specify the exact container
+export const downloadOrgChartAsImage = async (
+  resetZoom: () => number,
+  setZoom: (newScale: number) => void
+): Promise<void> => {
+  const orgChartElement = document.querySelector(
+    ".p-organizationchart-table"
+  ) as HTMLElement;
+
+  if (!orgChartElement) {
+    return;
+  }
 
   // Save the current zoom level and reset to initial state
   const currentZoom = resetZoom();
@@ -99,7 +123,7 @@ export const downloadOrgChartAsImage = async (resetZoom, setZoom) => {
     setZoom(currentZoom);
 
     const image = canvas
-      .toDataURL("image/jpeg")
+      .toDataURL("image/jpeg", 1)
       .replace("image/jpeg", "image/octet-stream");
     const link = document.createElement("a");
     link.download = "OrgChart.jpeg";

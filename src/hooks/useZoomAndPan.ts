@@ -1,21 +1,39 @@
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useCallback, RefObject } from "react";
 
-const useZoomAndPan = (ref) => {
+interface Position {
+  x: number | null;
+  y: number | null;
+}
+
+interface Pan {
+  x: number;
+  y: number;
+}
+
+interface ZoomAndPan {
+  zoomIn: () => void;
+  zoomOut: () => void;
+  setTransform: () => void;
+  resetZoom: () => number;
+  setZoom: (newScale: number) => void;
+}
+
+const useZoomAndPan = (ref: RefObject<HTMLElement>): ZoomAndPan => {
   const scale = useRef(1);
-  const pan = useRef({ x: 0, y: 0 });
+  const pan = useRef<Pan>({ x: 0, y: 0 });
   const dragging = useRef(false);
-  const lastPosition = useRef({ x: null, y: null });
+  const lastPosition = useRef<Position>({ x: null, y: null });
 
   const initialScale = 1; // Initial zoom level
 
-  const resetZoom = () => {
+  const resetZoom = (): number => {
     const currentScale = scale.current; // Save the current zoom level
     scale.current = initialScale; // Reset zoom level to initial state
     setTransform();
     return currentScale; // Return the saved zoom level
   };
 
-  const setZoom = (newScale) => {
+  const setZoom = (newScale: number): void => {
     scale.current = newScale; // Set zoom level to specified value
     setTransform();
   };
@@ -31,28 +49,28 @@ const useZoomAndPan = (ref) => {
     const container = ref.current;
 
     if (container) {
-      const handleWheel = (event) => {
+      const handleWheel = (event: WheelEvent): void => {
         event.preventDefault();
         const newScale = scale.current + event.deltaY * -0.01;
         scale.current = Math.min(Math.max(0.5, newScale), 2);
         setTransform();
       };
 
-      const handleMouseDown = (event) => {
+      const handleMouseDown = (event: MouseEvent): void => {
         dragging.current = true;
         lastPosition.current = { x: event.clientX, y: event.clientY };
       };
 
-      const handleMouseMove = (event) => {
+      const handleMouseMove = (event: MouseEvent): void => {
         if (dragging.current) {
-          pan.current.x += event.clientX - lastPosition.current.x;
-          pan.current.y += event.clientY - lastPosition.current.y;
+          pan.current.x += event.clientX - (lastPosition.current.x || 0);
+          pan.current.y += event.clientY - (lastPosition.current.y || 0);
           lastPosition.current = { x: event.clientX, y: event.clientY };
           setTransform();
         }
       };
 
-      const handleMouseUp = () => {
+      const handleMouseUp = (): void => {
         dragging.current = false;
       };
 
@@ -71,12 +89,12 @@ const useZoomAndPan = (ref) => {
     }
   }, [ref, setTransform]);
 
-  const zoomIn = () => {
+  const zoomIn = (): void => {
     scale.current = Math.min(scale.current + 0.1, 2);
     setTransform();
   };
 
-  const zoomOut = () => {
+  const zoomOut = (): void => {
     scale.current = Math.max(scale.current - 0.1, 0.5);
     setTransform();
   };
