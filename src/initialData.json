@@ -24,7 +24,26 @@
                             "avatar": "https://live.staticflickr.com/65535/53605161310_aa8238333a_o.jpg",
                             "title": "Chief Operations Officer",
                             "id": "3"
-                        }
+                        }, "children": [
+                            {
+                                "name": "John Cartington",
+                                "expanded": true,
+                                "data": {
+                                    "avatar": "https://live.staticflickr.com/65535/53605161310_aa8238333a_o.jpg",
+                                    "title": "HR Manager",
+                                    "id": "14"
+                                }
+                            }, 
+                            {
+                                "name": "Alison Sanders",
+                                "expanded": true,
+                                "data": {
+                                    "avatar": "https://live.staticflickr.com/65535/53605161310_aa8238333a_o.jpg",
+                                    "title": "Recruiter",
+                                    "id": "15"
+                                }
+                            }
+                        ]
                     },
                     {
                         "name": "Amanda Brown",
@@ -91,9 +110,38 @@
                                     "title": "Product Designer",
                                     "id": "10"
                                 }
+                            },
+                                {
+                                    "name": "Johnathan Lee",
+                                    "expanded": true,
+                                    "data": {
+                                        "avatar": "https://live.staticflickr.com/65535/53605161310_aa8238333a_o.jpg",
+                                        "title": "UX Researcher",
+                                        "id": "11"
+                                    }
+                                }                              
+                            ]
+                    },
+                    {
+                        "name": "Sara Johnson",
+                        "expanded": true,
+                        "data": {
+                            "avatar": "https://live.staticflickr.com/65535/53605161310_aa8238333a_o.jpg",
+                            "title": "Head of Marketing",
+                            "id": "12"
+                        },
+                        "children": [
+                        {
+                            "name": "Tommy Ferdinando",
+                            "expanded": true,
+                            "data": {
+                                "avatar": "https://live.staticflickr.com/65535/53605161310_aa8238333a_o.jpg",
+                                "title": "Product Marketing Manager",
+                                "id": "13"
                             }
-                        ]
-                    }
+                        }
+                    ]
+                }
                 ]
             }
         ]

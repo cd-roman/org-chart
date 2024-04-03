@@ -19,7 +19,7 @@ interface ZoomAndPan {
 }
 
 const useZoomAndPan = (ref: RefObject<HTMLElement>): ZoomAndPan => {
-  const scale = useRef(1);
+  const scale = useRef(0.9);
   const pan = useRef<Pan>({ x: 0, y: 0 });
   const dragging = useRef(false);
   const lastPosition = useRef<Position>({ x: null, y: null });
@@ -41,11 +41,14 @@ const useZoomAndPan = (ref: RefObject<HTMLElement>): ZoomAndPan => {
   const setTransform = useCallback(() => {
     const container = ref.current;
     if (container) {
+      container.style.transformOrigin = "50% 0";
       container.style.transform = `translate(${pan.current.x}px, ${pan.current.y}px) scale(${scale.current})`;
     }
   }, [ref]);
 
   useEffect(() => {
+    setTransform();
+
     const container = ref.current;
 
     if (container) {
