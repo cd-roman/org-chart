@@ -22,7 +22,11 @@ const fadeOut = keyframes`
   }
 `;
 
-export const NodeModalMenu = styled.div`
+interface NodeModalMenuProps {
+  $show: boolean;
+}
+
+export const NodeModalMenu = styled.div<NodeModalMenuProps>`
   display: ${(props) => (props.$show ? "block" : "none")};
   position: absolute;
   right: 0;

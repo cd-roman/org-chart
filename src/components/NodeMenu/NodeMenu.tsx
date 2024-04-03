@@ -1,13 +1,21 @@
 import React from "react";
 import { NodeModalMenu, NodeModalMenuItem } from "./NodeMenu.styles";
 
-function NodeMenu({
+interface NodeMenuProps {
+  setEditingEmployee: (employee: Node) => void;
+  editNode: (nodeId: string) => void;
+  employee: Node;
+  deleteNode: (nodeId: string) => void;
+  nodeId: string;
+}
+
+const NodeMenu: React.FC<NodeMenuProps> = ({
   setEditingEmployee,
   editNode,
   employee,
   deleteNode,
   nodeId,
-}) {
+}) => {
   return (
     <NodeModalMenu $show={true}>
       <NodeModalMenuItem
@@ -23,6 +31,6 @@ function NodeMenu({
       </NodeModalMenuItem>
     </NodeModalMenu>
   );
-}
+};
 
 export default NodeMenu;
