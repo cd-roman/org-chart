@@ -3,7 +3,7 @@
         "name": "Board",
         "expanded": true,
         "data": {
-            "avatar": "https://live.staticflickr.com/65535/53605161310_aa8238333a_o.jpg",
+            "avatar": "https://live.staticflickr.com/65535/53630717894_e468aa3b4b_o.jpg",
             "title": "ACME corp",
             "id": "1"
         },
@@ -12,7 +12,7 @@
                 "name": "Lucy Adams",
                 "expanded": true,
                 "data": {
-                    "avatar": "https://live.staticflickr.com/65535/53605161310_aa8238333a_o.jpg",
+                    "avatar": "https://live.staticflickr.com/65535/53629489942_4df69e3dbf_o.jpg",
                     "title": "CEO",
                     "id": "2"
                 },
@@ -21,7 +21,7 @@
                         "name": "Jane Smith",
                         "expanded": true,
                         "data": {
-                            "avatar": "https://live.staticflickr.com/65535/53605161310_aa8238333a_o.jpg",
+                            "avatar": "https://live.staticflickr.com/65535/53630587023_6d3b06a917_o.jpg",
                             "title": "Chief Operations Officer",
                             "id": "3"
                         }, "children": [
@@ -29,7 +29,7 @@
                                 "name": "John Cartington",
                                 "expanded": true,
                                 "data": {
-                                    "avatar": "https://live.staticflickr.com/65535/53605161310_aa8238333a_o.jpg",
+                                    "avatar": "https://live.staticflickr.com/65535/53630586993_20305219fc_o.jpg",
                                     "title": "HR Manager",
                                     "id": "14"
                                 }
@@ -38,7 +38,7 @@
                                 "name": "Alison Sanders",
                                 "expanded": true,
                                 "data": {
-                                    "avatar": "https://live.staticflickr.com/65535/53605161310_aa8238333a_o.jpg",
+                                    "avatar": "https://live.staticflickr.com/65535/53630717854_624c118895_o.jpg",
                                     "title": "Recruiter",
                                     "id": "15"
                                 }
@@ -49,7 +49,7 @@
                         "name": "Amanda Brown",
                         "expanded": true,
                         "data": {
-                            "avatar": "https://live.staticflickr.com/65535/53605161310_aa8238333a_o.jpg",
+                            "avatar": "https://live.staticflickr.com/65535/53630379271_98a86cc79d_o.jpg",
                             "title": "Chief Financial Officer",
                             "id": "4"
                         },
@@ -58,7 +58,7 @@
                                 "name": "Janet Carter",
                                 "expanded": true,
                                 "data": {
-                                    "avatar": "https://live.staticflickr.com/65535/53605161310_aa8238333a_o.jpg",
+                                    "avatar": "https://live.staticflickr.com/65535/53630587018_10c71d65ac_o.jpg",
                                     "title": "Financial Analyst",
                                     "id": "5"
                                 }
@@ -69,7 +69,7 @@
                         "name": "Joaquin Rodriguez",
                         "expanded": true,
                         "data": {
-                            "avatar": "https://live.staticflickr.com/65535/53605161310_aa8238333a_o.jpg",
+                            "avatar": "https://live.staticflickr.com/65535/53630379266_07f35ebb27_o.jpg",
                             "title": "CTO",
                             "id": "6"
                         },
@@ -78,7 +78,7 @@
                                 "name": "Jimmy O'Connell",
                                 "expanded": true,
                                 "data": {
-                                    "avatar": "https://live.staticflickr.com/65535/53605161310_aa8238333a_o.jpg",
+                                    "avatar": "https://live.staticflickr.com/65535/53630587053_5b211fd45f_o.jpg",
                                     "title": "Back-end Developer",
                                     "id": "8"
                                 }
@@ -87,7 +87,7 @@
                                 "name": "Anna Johnson",
                                 "expanded": true,
                                 "data": {
-                                    "avatar": "https://live.staticflickr.com/65535/53605161310_aa8238333a_o.jpg",
+                                    "avatar": "https://live.staticflickr.com/65535/53630587008_6540f48096_o.jpg",
                                     "title": "Front-end Developer",
                                     "id": "9"
                                 }
@@ -98,15 +98,15 @@
                         "name": "Andrii Stepanenko",
                         "expanded": true,
                         "data": {
-                            "avatar": "https://live.staticflickr.com/65535/53605161310_aa8238333a_o.jpg",
+                            "avatar": "https://live.staticflickr.com/65535/53630717859_6822d4f118_o.jpg",
                             "title": "Head of Product",
                             "id": "7"
                         }, "children": [                    
                             {
-                                "name": "Tim Hook",
+                                "name": "April Wong",
                                 "expanded": true,
                                 "data": {
-                                    "avatar": "https://live.staticflickr.com/65535/53605161310_aa8238333a_o.jpg",
+                                    "avatar": "https://live.staticflickr.com/65535/53630717849_6b2115c5bd_o.jpg",
                                     "title": "Product Designer",
                                     "id": "10"
                                 }
@@ -115,7 +115,7 @@
                                     "name": "Johnathan Lee",
                                     "expanded": true,
                                     "data": {
-                                        "avatar": "https://live.staticflickr.com/65535/53605161310_aa8238333a_o.jpg",
+                                        "avatar": "https://live.staticflickr.com/65535/53630379246_46934250ee_o.jpg",
                                         "title": "UX Researcher",
                                         "id": "11"
                                     }
@@ -126,7 +126,7 @@
                         "name": "Sara Johnson",
                         "expanded": true,
                         "data": {
-                            "avatar": "https://live.staticflickr.com/65535/53605161310_aa8238333a_o.jpg",
+                            "avatar": "https://live.staticflickr.com/65535/53630379256_580fd4ab8a_o.jpg",
                             "title": "Head of Marketing",
                             "id": "12"
                         },
@@ -135,7 +135,7 @@
                             "name": "Tommy Ferdinando",
                             "expanded": true,
                             "data": {
-                                "avatar": "https://live.staticflickr.com/65535/53605161310_aa8238333a_o.jpg",
+                                "avatar": "https://live.staticflickr.com/65535/53630825305_3ea53c222d_o.jpg",
                                 "title": "Product Marketing Manager",
                                 "id": "13"
                             }

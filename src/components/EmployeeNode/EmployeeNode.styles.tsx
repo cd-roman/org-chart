@@ -8,8 +8,8 @@ export const EmployeeNodeContainer = styled.div`
 `;
 
 export const ImageContainer = styled.div`
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
 
   img {
     width: 100%;
