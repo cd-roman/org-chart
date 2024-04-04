@@ -8,8 +8,8 @@ const AddNewEmployeeButton = styled.button`
   right: 8px;
   bottom: 8px;
   border-radius: 50%;
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   font-size: 16px;
   line-height: 24px;
   text-align: center;
@@ -17,6 +17,13 @@ const AddNewEmployeeButton = styled.button`
   background: #1e6bd0;
   color: white;
   cursor: pointer;
+
+  i {
+    font-size: 12px;
+    color: white;
+    font-weight: bold;
+    margin: auto;
+  }
 `;
 
 export default AddNewEmployeeButton;

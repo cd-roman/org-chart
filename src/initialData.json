@@ -95,6 +95,26 @@
                         ]
                     },
                     {
+                        "name": "Sara Johnson",
+                        "expanded": true,
+                        "data": {
+                            "avatar": "https://live.staticflickr.com/65535/53630379256_580fd4ab8a_o.jpg",
+                            "title": "Head of Marketing",
+                            "id": "12"
+                        },
+                        "children": [
+                        {
+                            "name": "Tommy Ferdinando",
+                            "expanded": true,
+                            "data": {
+                                "avatar": "https://live.staticflickr.com/65535/53630825305_3ea53c222d_o.jpg",
+                                "title": "Product Marketing Manager",
+                                "id": "13"
+                            }
+                        }
+                    ]
+                    },
+                    {
                         "name": "Andrii Stepanenko",
                         "expanded": true,
                         "data": {
@@ -120,28 +140,8 @@
                                         "id": "11"
                                     }
                                 }                              
-                            ]
-                    },
-                    {
-                        "name": "Sara Johnson",
-                        "expanded": true,
-                        "data": {
-                            "avatar": "https://live.staticflickr.com/65535/53630379256_580fd4ab8a_o.jpg",
-                            "title": "Head of Marketing",
-                            "id": "12"
-                        },
-                        "children": [
-                        {
-                            "name": "Tommy Ferdinando",
-                            "expanded": true,
-                            "data": {
-                                "avatar": "https://live.staticflickr.com/65535/53630825305_3ea53c222d_o.jpg",
-                                "title": "Product Marketing Manager",
-                                "id": "13"
-                            }
-                        }
-                    ]
-                }
+                        ]
+                    }
                 ]
             }
         ]

@@ -6,7 +6,13 @@
   visibility: hidden;
 }
 
+.p-organizationchart {
+  cursor: grab;
+}
+
 .p-organizationchart-node-content {
+  min-width: 150px;
+
   &:hover {
     button {
       opacity: 1;

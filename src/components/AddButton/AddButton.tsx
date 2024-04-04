@@ -1,5 +1,6 @@
 import React from "react";
 import AddNewEmployeeButton from "./AddButton.styles";
+import 'primeicons/primeicons.css';
 import { NodeObject } from "../../types";
 
 interface AddButtonProps {
@@ -17,7 +18,7 @@ const AddButton: React.FC<AddButtonProps> = ({ setSelectedNode, setShowAddForm, 
 
   return (
     <AddNewEmployeeButton onClick={handleClick}>
-      +
+      <i className="pi pi-plus"></i>
     </AddNewEmployeeButton>
   );
 }
