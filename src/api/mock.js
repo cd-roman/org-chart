@@ -1,9 +1,10 @@
 // api/mock.js
 import MockAdapter from "axios-mock-adapter";
 
-import initialData from "../initialData.json";
+import data from "../initialData.json";
 
 export const setupMock = (apiService) => {
+  let initialData = [...data];
   const mock = new MockAdapter(apiService);
 
   mock.onGet("/data").reply(200, initialData);
@@ -58,11 +59,7 @@ export const setupMock = (apiService) => {
     };
 
     // Update initialData with newEmployee integrated
-    const updatedData = integrateNewEmployee(
-      initialData,
-      parentId,
-      newEmployee
-    );
+    let updatedData = integrateNewEmployee(initialData, parentId, newEmployee);
 
     // For simplicity, we're directly mutating initialData here, but in a real app, we would update the backend data source
     initialData = updatedData;
