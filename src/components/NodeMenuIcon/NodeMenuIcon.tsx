@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { KebabMenuButton, KebabIcon } from "./NodeMenuIcon.styles";
 import NodeMenu from "../NodeMenu/NodeMenu";
-import { NodeObject } from "../../types";
+import { EmployeeData } from "../../types";
 
 interface NodeMenuIconProps {
-  node: NodeObject;
+  node: EmployeeData;
   deleteNode: (id: string) => void;
-  editNode: (node: NodeObject) => void;
-  setEditingEmployee: (employee: NodeObject) => void;
+  editNode: (node: EmployeeData) => void;
+  setEditingEmployee: (employee: EmployeeData) => void;
 }
 
 const NodeMenuIcon: React.FC<NodeMenuIconProps> = ({ node, deleteNode, editNode, setEditingEmployee }) => {

@@ -9,11 +9,11 @@ import {
   ImageContainer,
 } from "./EditEmployeeForm.styles";
 
-import { NodeObject } from "../../types";
+import { EmployeeData } from "../../types";
 
 interface EditEmployeeFormProps {
-  employee: NodeObject;
-  onEditEmployee: (employee: NodeObject) => void;
+  employee: EmployeeData;
+  onEditEmployee: (employee: EmployeeData) => void;
   onCancelEdit: () => void;
 }
 

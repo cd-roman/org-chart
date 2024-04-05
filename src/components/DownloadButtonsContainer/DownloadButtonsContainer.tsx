@@ -13,10 +13,10 @@ const DownloadButtonsContainer: React.FC<DownloadButtonsContainerProps> = ({ onD
   return (
     <DownloadContainer>
       <DownloadButton onClick={onDownloadPDF}>
-        Download PDF<i className="pi pi-download"></i>
+        Download PDF<i className="pi pi-download" />
       </DownloadButton>
       <DownloadButton onClick={onDownloadImage}>
-        Download Image<i className="pi pi-download"></i>
+        Download Image<i className="pi pi-download" />
       </DownloadButton>
     </DownloadContainer>
   );

@@ -9,16 +9,16 @@ import {
   EmployeeTitle,
 } from "./EmployeeNode.styles";
 
-import { NodeObject } from "../../types";
+import { EmployeeData } from "../../types";
 
 
 interface EmployeeNodeProps {
-  node: NodeObject;
+  node: EmployeeData;
   deleteNode: (id: string) => void;
-  editNode: (node: NodeObject) => void;
-  setSelectedNode: (node: NodeObject) => void;
+  editNode: (node: EmployeeData) => void;
+  setSelectedNode: (node: EmployeeData) => void;
   setShowAddForm: (show: boolean) => void;
-  setEditingEmployee: (employee: NodeObject) => void;
+  setEditingEmployee: (employee: EmployeeData) => void;
 }
 
 export const EmployeeNode: React.FC<EmployeeNodeProps> = ({

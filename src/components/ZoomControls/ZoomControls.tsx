@@ -14,10 +14,10 @@ const ZoomControls: React.FC<ZoomControlsProps> = ({ onZoomIn, onZoomOut }) => {
   return (
     <ZoomControlsContainer className="zoom-controls">
       <ZoomControlsButton onClick={onZoomIn}>
-        <i className="pi pi-plus"></i>
+        <i className="pi pi-plus" />
       </ZoomControlsButton>
       <ZoomControlsButton onClick={onZoomOut}>
-        <i className="pi pi-minus"></i>
+        <i className="pi pi-minus" />
       </ZoomControlsButton>
     </ZoomControlsContainer>
   );

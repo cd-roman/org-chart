@@ -1,4 +1,4 @@
-export interface NodeObject {
+export interface EmployeeData {
   name: string;
   expanded: boolean;
   data: {
@@ -6,7 +6,7 @@ export interface NodeObject {
     avatar: string;
     title: string;
   };
-  children?: NodeObject[];
+  children?: EmployeeData[];
 }
 
 export interface NewEmployeeData {
