@@ -12,16 +12,16 @@ function useEmployeeNode() {
   const [showEditForm, setShowEditForm] = useState(false);
   const [editingEmployee, setEditingEmployee] = useState<NodeObject | null>(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await apiService.get<NodeObject[]>("/data");
-        setData(response.data); // Set the fetched data to the state
-      } catch (error) {
-        console.error("There was an error!", error);
-      }
-    };
+  const fetchData = async () => {
+    try {
+      const response = await apiService.get<NodeObject[]>("/data");
+      setData(response.data); // Set the fetched data to the state
+    } catch (error) {
+      console.error("There was an error!", error);
+    }
+  };
 
+  useEffect(() => {
     fetchData();
   }, []);
 
