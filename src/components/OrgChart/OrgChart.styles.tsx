@@ -5,6 +5,10 @@ export const OrgChartWorkspace = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 999px) {
+    display: none;
+  }
 `;
 
 export const OrgChartContainer = styled.div`
@@ -36,4 +40,22 @@ export const StyledOrgChart = styled.div`
       padding: 4px;
     }
   }
+`;
+
+export const ResponsiveMessageContainer = styled.div`
+  display: none;
+
+  @media (max-width: 999px) {
+    display: flex;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+`;
+
+export const ResponsiveMessage = styled.h2`
+  font-size: 2rem;
+  color: #333;
+  text-align: center;
 `;
