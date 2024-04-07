@@ -8,6 +8,7 @@ interface OrgChartControlsProps {
   onDownloadImage: () => void;
   onZoomIn: () => void;
   onZoomOut: () => void;
+  onCenterClick: () => void;
 }
 
 const OrgChartControls: React.FC<OrgChartControlsProps> = ({
@@ -15,6 +16,7 @@ const OrgChartControls: React.FC<OrgChartControlsProps> = ({
   onDownloadImage,
   onZoomIn,
   onZoomOut,
+  onCenterClick,
 }) => {
   return (
     <ControlsContainer>
@@ -22,7 +24,7 @@ const OrgChartControls: React.FC<OrgChartControlsProps> = ({
         onDownloadPDF={onDownloadPDF}
         onDownloadImage={onDownloadImage}
       />
-      <ZoomControls onZoomIn={onZoomIn} onZoomOut={onZoomOut} />
+      <ZoomControls onZoomIn={onZoomIn} onZoomOut={onZoomOut} onCenterClick={onCenterClick} />
     </ControlsContainer>
   );
 };

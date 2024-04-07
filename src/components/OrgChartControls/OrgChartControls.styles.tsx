@@ -6,3 +6,4 @@ export const ControlsContainer = styled.div`
   justify-content: space-between;
   width: 100%;
 `;
+

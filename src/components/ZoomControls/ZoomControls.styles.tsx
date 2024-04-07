@@ -2,10 +2,22 @@ import styled from "styled-components";
 
 export const ZoomControlsContainer = styled.div`
   display: flex;
-  justify-content: flex-end;
-  gap: 16px;
+  flex-direction: column;
   width: 50%;
 `;
+
+export const ZoomOutAndInContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+`;
+
+export const ResetZoomContainer = styled.div`
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+`;
+
 
 export const ZoomControlsButton = styled.button`
   cursor: pointer;
@@ -20,8 +32,8 @@ export const ZoomControlsButton = styled.button`
   transition: background-color 0.3s, transform 0.2s;
 
   i {
-    font-size: 10px;
-    font-weight: bold;
+    font-size: 14px;
+    font-weight: medium;
     color: #333;
   }
 

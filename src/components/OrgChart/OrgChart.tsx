@@ -14,7 +14,7 @@ import { OrgChartWorkspace, OrgChartContainer, StyledOrgChart, ResponsiveMessage
 
 const OrgChart: React.FC = () => {
   const orgChartRef = useRef<HTMLDivElement>(null); // Create a ref for the organization chart
-  const { zoomIn, zoomOut, setZoom, resetZoom } = useZoomAndPan(orgChartRef);
+  const { zoomIn, zoomOut, setZoom, resetZoom, handleCenterClick } = useZoomAndPan(orgChartRef);
   const [isChartVisible, setIsChartVisible] = useState(false);
 
   useEffect(() => {
@@ -45,6 +45,7 @@ const OrgChart: React.FC = () => {
           onDownloadImage={() => downloadOrgChartAsImage(resetZoom, setZoom)}
           onZoomIn={zoomIn}
           onZoomOut={zoomOut}
+          onCenterClick={handleCenterClick}
         />
         <OrgChartContainer ref={orgChartRef}>
           {data.length > 0 && isChartVisible ? (

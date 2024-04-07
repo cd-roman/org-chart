@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const DownloadContainer = styled.div`
   display: flex;
   justify-content: flex-start;
-  align-items: center;
   gap: 16px;
   width: 50%;
 `;

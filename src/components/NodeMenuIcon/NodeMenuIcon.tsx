@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import { KebabMenuButton, KebabIcon } from "./NodeMenuIcon.styles";
+import { KebabMenuButton } from "./NodeMenuIcon.styles";
 import NodeMenu from "../NodeMenu/NodeMenu";
 import { EmployeeData } from "../../types";
+import 'primeicons/primeicons.css';
 
 interface NodeMenuIconProps {
   node: EmployeeData;
@@ -29,9 +30,7 @@ const NodeMenuIcon: React.FC<NodeMenuIconProps> = ({ node, deleteNode, editNode,
 
   return (
     <KebabMenuButton onClick={() => setShowMenu(!showMenu)} ref={menuRef as React.RefObject<HTMLDivElement>}>
-      <KebabIcon />
-      <KebabIcon />
-      <KebabIcon />
+      <i className="pi pi-ellipsis-v" />
       {showMenu && (
         <NodeMenu
           employee={node}

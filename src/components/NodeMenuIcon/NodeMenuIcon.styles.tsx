@@ -1,13 +1,5 @@
 import styled from 'styled-components';
 
-export const KebabIcon = styled.span`
-  width: 3px;
-  height: 3px;
-  background-color: gray;
-  margin: 1px;
-  border-radius: 50%;
-`;
-
 export const KebabMenuButton = styled.div`
   display: flex;
   flex-direction: column;
@@ -19,4 +11,9 @@ export const KebabMenuButton = styled.div`
   border: none;
   background: transparent;
   cursor: pointer;
+
+  i {
+    font-size: 18px;
+    color: #333;
+  }
 `;

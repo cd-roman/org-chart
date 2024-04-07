@@ -16,6 +16,8 @@ interface ZoomAndPan {
   setTransform: () => void;
   resetZoom: () => number;
   setZoom: (newScale: number) => void;
+  pan: React.MutableRefObject<Pan>;
+  handleCenterClick: () => void;
 }
 
 const useZoomAndPan = (ref: RefObject<HTMLElement>): ZoomAndPan => {
@@ -60,8 +62,10 @@ const useZoomAndPan = (ref: RefObject<HTMLElement>): ZoomAndPan => {
       };
 
       const handleMouseDown = (event: MouseEvent): void => {
-        dragging.current = true;
-        lastPosition.current = { x: event.clientX, y: event.clientY };
+        if (event.button === 0) {
+          dragging.current = true;
+          lastPosition.current = { x: event.clientX, y: event.clientY };
+        }
       };
 
       const handleMouseMove = (event: MouseEvent): void => {
@@ -100,7 +104,7 @@ const useZoomAndPan = (ref: RefObject<HTMLElement>): ZoomAndPan => {
         : innerWidth < 1700
         ? 0.75
         : innerWidth < 2000
-        ? 0.9
+        ? 0.8
         : 1;
     setZoom(newScale);
   };
@@ -124,7 +128,21 @@ const useZoomAndPan = (ref: RefObject<HTMLElement>): ZoomAndPan => {
     setTransform();
   };
 
-  return { zoomIn, zoomOut, setTransform, resetZoom, setZoom };
+  const handleCenterClick = () => {
+    handleResize();
+    pan.current = { x: 0, y: 0 }; // Center the org chart
+    setTransform();
+  };
+
+  return {
+    zoomIn,
+    zoomOut,
+    setTransform,
+    resetZoom,
+    setZoom,
+    pan,
+    handleCenterClick,
+  };
 };
 
 export default useZoomAndPan;
