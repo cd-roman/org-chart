@@ -11,6 +11,7 @@ import {
   downloadOrgChartAsImage,
 } from "../../utils/orgChartDownloadUtils";
 import "./OrgChart.styles.scss";
+import { OrgChartWorkspace, OrgChartContainer, StyledOrgChart } from "./OrgChart.styles";
 
 const OrgChart: React.FC = () => {
   const orgChartRef = useRef<HTMLDivElement>(null); // Create a ref for the organization chart
@@ -38,24 +39,26 @@ const OrgChart: React.FC = () => {
   } = useEmployeeNode();
 
   return (
-    <>
+    <OrgChartWorkspace>
       <OrgChartControls
         onDownloadPDF={() => downloadOrgChartAsPDF(resetZoom, setZoom)}
         onDownloadImage={() => downloadOrgChartAsImage(resetZoom, setZoom)}
         onZoomIn={zoomIn}
         onZoomOut={zoomOut}
       />
-      <div ref={orgChartRef}>
+      <OrgChartContainer ref={orgChartRef}>
         {data.length > 0 && isChartVisible ? (
-          <OrganizationChart
-            value={data}
-            nodeTemplate={nodeTemplate}
-            className={isChartVisible ? "orgchart-visible" : "orgchart-hidden"}
-          />
+          <StyledOrgChart>
+            <OrganizationChart
+              value={data}
+              nodeTemplate={nodeTemplate}
+              className={isChartVisible ? "orgchart-visible" : "orgchart-hidden"}
+            />
+          </StyledOrgChart>
         ) : (
           <Spinner />
         )}
-      </div>
+      </OrgChartContainer>
       {showAddForm && (
         <EmployeeForm
           onAddEmployee={onAddEmployee}
@@ -71,7 +74,7 @@ const OrgChart: React.FC = () => {
           }}
         />
       )}
-    </>
+    </OrgChartWorkspace>
   );
 }
 

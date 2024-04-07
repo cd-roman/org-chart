@@ -92,6 +92,28 @@ const useZoomAndPan = (ref: RefObject<HTMLElement>): ZoomAndPan => {
     }
   }, [ref, setTransform]);
 
+  const handleResize = () => {
+    const { innerWidth } = window;
+    const newScale =
+      innerWidth < 1400
+        ? 0.6
+        : innerWidth < 1700
+        ? 0.75
+        : innerWidth < 2000
+        ? 0.9
+        : 1;
+    setZoom(newScale);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+
+    // Set initial scale based on current window size
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
+  });
+
   const zoomIn = (): void => {
     scale.current = Math.min(scale.current + 0.1, 2);
     setTransform();

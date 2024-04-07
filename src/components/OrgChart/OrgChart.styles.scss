@@ -1,31 +1,27 @@
-.orgchart-visible {
-  visibility: visible;
-}
 
-.orgchart-hidden {
-  visibility: hidden;
-}
+// .orgchart-visible {
+//   visibility: visible;
+// }
 
-.p-organizationchart {
-  cursor: grab;
-}
+// .orgchart-hidden {
+//   visibility: hidden;
+// }
 
-.p-organizationchart-node-content {
-  min-width: 150px;
+// .p-organizationchart {
+//   cursor: grab;
+// }
 
-  &:hover {
-    button {
-      opacity: 1;
-      visibility: visible;
-      transition-delay: 0s;
-    }
-  }
-}
+// .p-organizationchart-node-content {
+//   &:hover {
+//     button {
+//       opacity: 1;
+//       visibility: visible;
+//       transition-delay: 0s;
+//     }
+//   }
+// }
 
-.p-organizationchart-node-content .p-node-toggler {
-  transform: rotate(180deg);
-}
 
-.p-organizationchart-node-content div {
-  padding: 4px;
-}
+// .p-organizationchart-node-content div {
+//   padding: 4px;
+// }
