@@ -57,7 +57,7 @@ const useZoomAndPan = (ref: RefObject<HTMLElement>): ZoomAndPan => {
       const handleWheel = (event: WheelEvent): void => {
         event.preventDefault();
         const newScale = scale.current + event.deltaY * -0.01;
-        scale.current = Math.min(Math.max(0.5, newScale), 2);
+        scale.current = Math.min(Math.max(0.4, newScale), 2);
         setTransform();
       };
 
@@ -100,14 +100,18 @@ const useZoomAndPan = (ref: RefObject<HTMLElement>): ZoomAndPan => {
 
   const handleResize = () => {
     const { innerWidth } = window;
+
+    const scales = [
+      { max: 1300, scale: 0.45 },
+      { max: 1400, scale: 0.55 },
+      { max: 1600, scale: 0.6 },
+      { max: 1800, scale: 0.75 },
+      { max: 2000, scale: 0.8 },
+    ];
+
     const newScale =
-      innerWidth < 1400
-        ? 0.6
-        : innerWidth < 1700
-        ? 0.75
-        : innerWidth < 2000
-        ? 0.8
-        : 1;
+      scales.find(({ max }) => innerWidth < max)?.scale || initialScale;
+
     setZoom(newScale);
   };
 
@@ -130,7 +134,7 @@ const useZoomAndPan = (ref: RefObject<HTMLElement>): ZoomAndPan => {
   };
 
   const zoomOut = (): void => {
-    scale.current = Math.max(scale.current - 0.1, 0.5);
+    scale.current = Math.max(scale.current - 0.1, 0.4);
     setTransform();
   };
 

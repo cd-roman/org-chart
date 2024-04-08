@@ -21,8 +21,10 @@ export const ImageContainer = styled.div`
 
 export const EmployeeName = styled.span`
   font-weight: bold;
+  white-space: nowrap;
 `;
 
 export const EmployeeTitle = styled.span`
   padding-top: 4px;
+  white-space: nowrap;
 `;
