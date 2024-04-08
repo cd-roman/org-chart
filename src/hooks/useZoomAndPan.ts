@@ -36,7 +36,7 @@ const useZoomAndPan = (ref: RefObject<HTMLElement>): ZoomAndPan => {
   };
 
   const setZoom = (newScale: number): void => {
-    scale.current = newScale; // Set zoom level to specified value
+    scale.current = newScale;
     setTransform();
   };
 
@@ -100,22 +100,10 @@ const useZoomAndPan = (ref: RefObject<HTMLElement>): ZoomAndPan => {
 
   const handleResize = () => {
     const { innerWidth } = window;
-
-    const scales = [
-      { max: 1300, scale: 0.45 },
-      { max: 1400, scale: 0.55 },
-      { max: 1600, scale: 0.63 },
-      { max: 1800, scale: 0.72 },
-      { max: 2000, scale: 0.8 },
-    ];
-
-    const newScale =
-      scales.find(({ max }) => innerWidth < max)?.scale || initialScale;
-
+    const newScale = (innerWidth * 0.42) / 1000;
     setZoom(newScale);
   };
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (isFirstLoad) {
       handleResize();

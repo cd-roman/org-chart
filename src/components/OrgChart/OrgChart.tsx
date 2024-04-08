@@ -21,7 +21,7 @@ const OrgChart: React.FC = () => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setIsChartVisible(true);
-    }, 200);
+    }, 100);
 
     return () => clearTimeout(timeoutId);
   }, []);
