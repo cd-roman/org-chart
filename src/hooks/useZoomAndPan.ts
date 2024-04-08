@@ -104,8 +104,8 @@ const useZoomAndPan = (ref: RefObject<HTMLElement>): ZoomAndPan => {
     const scales = [
       { max: 1300, scale: 0.45 },
       { max: 1400, scale: 0.55 },
-      { max: 1600, scale: 0.6 },
-      { max: 1800, scale: 0.75 },
+      { max: 1600, scale: 0.63 },
+      { max: 1800, scale: 0.72 },
       { max: 2000, scale: 0.8 },
     ];
 

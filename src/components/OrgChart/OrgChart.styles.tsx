@@ -26,7 +26,8 @@ export const OrgChartContainer = styled.div`
 
 export const StyledOrgChart = styled.div`
   .p-organizationchart-node-content {
-    
+    min-width: 200px;
+
     &:hover {
       button {
         opacity: 1;
