@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
-import { OrganizationChart } from "primereact/organizationchart";
+import React, { useState, useEffect, useRef, Suspense } from "react";
 import useEmployeeNode from "../EmployeeNode/useEmployeeNode";
 import useZoomAndPan from "../../hooks/useZoomAndPan";
 import EmployeeForm from "../AddEmployee/AddEmployee";
@@ -11,6 +10,8 @@ import {
   downloadOrgChartAsImage,
 } from "../../utils/orgChartDownloadUtils";
 import { OrgChartWorkspace, OrgChartContainer, StyledOrgChart, ResponsiveMessageContainer, ResponsiveMessage } from "./OrgChart.styles";
+
+const LazyOrgChart = React.lazy(() => import('./OrganizationChartWrapper'));
 
 const OrgChart: React.FC = () => {
   const orgChartRef = useRef<HTMLDivElement>(null); // Create a ref for the organization chart
@@ -50,11 +51,10 @@ const OrgChart: React.FC = () => {
         <OrgChartContainer ref={orgChartRef}>
           {data.length > 0 && isChartVisible ? (
             <StyledOrgChart>
-              <OrganizationChart
-                value={data}
-                nodeTemplate={nodeTemplate}
-                className={isChartVisible ? "orgchart-visible" : "orgchart-hidden"}
-              />
+              <Suspense fallback={<Spinner />}>
+                <LazyOrgChart value={data}
+                nodeTemplate={nodeTemplate}/>
+              </Suspense>
             </StyledOrgChart>
           ) : (
             <Spinner />
