@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback, RefObject } from "react";
+import { useState, useEffect, useRef, useCallback, RefObject } from "react";
 
 interface Position {
   x: number | null;
@@ -21,7 +21,7 @@ interface ZoomAndPan {
 }
 
 const useZoomAndPan = (ref: RefObject<HTMLElement>): ZoomAndPan => {
-  const scale = useRef(0.9);
+  const scale = useRef(1);
   const pan = useRef<Pan>({ x: 0, y: 0 });
   const dragging = useRef(false);
   const lastPosition = useRef<Position>({ x: null, y: null });
@@ -96,6 +96,8 @@ const useZoomAndPan = (ref: RefObject<HTMLElement>): ZoomAndPan => {
     }
   }, [ref, setTransform]);
 
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
+
   const handleResize = () => {
     const { innerWidth } = window;
     const newScale =
@@ -109,14 +111,18 @@ const useZoomAndPan = (ref: RefObject<HTMLElement>): ZoomAndPan => {
     setZoom(newScale);
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
+    if (isFirstLoad) {
+      handleResize();
+      setIsFirstLoad(false);
+    }
+
     window.addEventListener("resize", handleResize);
 
-    // Set initial scale based on current window size
-    handleResize();
-
     return () => window.removeEventListener("resize", handleResize);
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isFirstLoad]);
 
   const zoomIn = (): void => {
     scale.current = Math.min(scale.current + 0.1, 2);

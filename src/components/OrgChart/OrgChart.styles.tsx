@@ -12,7 +12,7 @@ export const OrgChartWorkspace = styled.div`
 `;
 
 export const OrgChartContainer = styled.div`
-
+  padding: 0 10% 5%;
   cursor: grab;
 
   &.orgchart-visible {
