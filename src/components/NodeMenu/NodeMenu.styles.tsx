@@ -46,6 +46,7 @@ export const NodeModalMenuItem = styled.button`
   border: none;
   background: none;
   cursor: pointer;
+  font-size: 0.85rem;
 
   &:hover {
     background: #efefef;

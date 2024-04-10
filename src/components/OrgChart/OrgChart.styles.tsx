@@ -31,8 +31,7 @@ export const StyledOrgChart = styled.div`
     &:hover {
       button {
         opacity: 1;
-        visibility: visible;
-        transition-delay: 0s;
+        pointer-events: auto;
       }
     }
 
