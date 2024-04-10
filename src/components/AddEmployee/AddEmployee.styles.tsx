@@ -36,6 +36,7 @@ export const FormInput = styled.input`
   border: 1px solid #ddd;
   border-radius: 4px;
   box-sizing: border-box;
+  font-size: 0.85rem;
 
   &:focus {
     outline: none;
@@ -63,6 +64,7 @@ export const FormButton = styled.button`
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
+  font-size: 0.85rem;
 
   &:hover {
     background-color: #165fca;
