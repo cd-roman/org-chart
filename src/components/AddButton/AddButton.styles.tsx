@@ -1,11 +1,12 @@
 import styled from "styled-components";
-import { motion } from 'framer-motion';
 
-const AddNewEmployeeButton = styled(motion.button)`
+const AddNewEmployeeButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
+  -webkit-transition: opacity 0.3s;
+  will-change: opacity;
   pointer-events: none;
   position: absolute;
   right: 8px;
