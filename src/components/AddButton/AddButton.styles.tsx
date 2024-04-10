@@ -1,10 +1,12 @@
 import styled from "styled-components";
+import { motion } from 'framer-motion';
 
-const AddNewEmployeeButton = styled.button`
+const AddNewEmployeeButton = styled(motion.button)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s;
-  will-change: opacity;
   position: absolute;
   right: 8px;
   bottom: 8px;
@@ -18,12 +20,14 @@ const AddNewEmployeeButton = styled.button`
   background: #1e6bd0;
   color: white;
   cursor: pointer;
+  padding: 0;
 
   i {
+    margin: auto;
     font-size: 12px;
     color: white;
     font-weight: bold;
-    margin: auto;
+    padding: 0;
   }
 `;
 

@@ -57,7 +57,7 @@ const useZoomAndPan = (ref: RefObject<HTMLElement>): ZoomAndPan => {
       const handleWheel = (event: WheelEvent): void => {
         event.preventDefault();
         const newScale = scale.current + event.deltaY * -0.01;
-        scale.current = Math.min(Math.max(0.4, newScale), 1.2);
+        scale.current = Math.min(Math.max(0.4, newScale), 1.5);
         setTransform();
       };
 
@@ -117,7 +117,7 @@ const useZoomAndPan = (ref: RefObject<HTMLElement>): ZoomAndPan => {
   }, [isFirstLoad]);
 
   const zoomIn = (): void => {
-    scale.current = Math.min(scale.current + 0.1, 1.2);
+    scale.current = Math.min(scale.current + 0.1, 1.5);
     setTransform();
   };
 
