@@ -12,6 +12,7 @@
     "express": "^4.19.2",
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.1",
+    "micromatch": "^4.0.8",
     "nth-check": "^2.0.1",
     "postcss": "^8.4.31",
     "primeicons": "^6.0.1",
