@@ -9,7 +9,7 @@
     "axios": "^1.7.3",
     "axios-mock-adapter": "^1.22.0",
     "ejs": "^3.1.10",
-    "express": "^4.21.1",
+    "express": "^4.21.2",
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.1",
     "micromatch": "^4.0.8",
