@@ -59,6 +59,7 @@
   },
   "overrides": {
     "braces": "3.0.3",
-    "serialize-javascript": "6.0.2"
+    "serialize-javascript": "6.0.2",
+    "dompurify": "3.2.4"
   }
 }
