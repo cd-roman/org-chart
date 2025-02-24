@@ -1,4 +1,5 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
+import { useKeyPress } from "../../hooks/useKeyPress";
 import {
   EditModal,
   EditForm,
@@ -17,23 +18,29 @@ interface EditEmployeeFormProps {
   onCancelEdit: () => void;
 }
 
-const EditEmployeeForm: React.FC<EditEmployeeFormProps> = ({ employee, onEditEmployee, onCancelEdit }) => {
+const EditEmployeeForm: React.FC<EditEmployeeFormProps> = ({
+  employee,
+  onEditEmployee,
+  onCancelEdit,
+}) => {
   const [name, setName] = useState(employee.name || "");
   const [title, setTitle] = useState(employee.data.title || "");
   const [image, setImage] = useState(employee.data.avatar || "");
 
-const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
-  const file = e.target.files && e.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = (e: ProgressEvent<FileReader>) => {
-      if (e.target?.result) {
-        setImage(e.target.result as string);
-      }
-    };
-    reader.readAsDataURL(file);
-  }
-};
+  useKeyPress({ key: "Escape" }, onCancelEdit);
+
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files && e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: ProgressEvent<FileReader>) => {
+        if (e.target?.result) {
+          setImage(e.target.result as string);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -88,6 +95,6 @@ const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
       </div>
     </EditModal>
   );
-}
+};
 
 export default EditEmployeeForm;

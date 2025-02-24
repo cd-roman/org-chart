@@ -8,7 +8,7 @@ import {
   FormButton,
   CancelButton,
 } from "./AddEmployee.styles";
-
+import { useKeyPress } from "../../hooks/useKeyPress";
 import { NewEmployeeData } from "../../types";
 
 interface EmployeeFormProps {
@@ -16,10 +16,15 @@ interface EmployeeFormProps {
   onCancel: () => void;
 }
 
-const EmployeeForm: React.FC<EmployeeFormProps> = ({ onAddEmployee, onCancel }) => {
+const EmployeeForm: React.FC<EmployeeFormProps> = ({
+  onAddEmployee,
+  onCancel,
+}) => {
   const [name, setName] = useState("");
   const [title, setTitle] = useState("");
   const [image, setImage] = useState<string | null>(null);
+
+  useKeyPress({ key: "Escape" }, onCancel);
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
@@ -40,7 +45,7 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({ onAddEmployee, onCancel }) 
       data: {
         avatar: image || placeholderImage,
         title: title,
-      }
+      },
     });
     // Reset form fields after submission
     setName("");
@@ -79,6 +84,6 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({ onAddEmployee, onCancel }) 
       </div>
     </Modal>
   );
-}
+};
 
 export default EmployeeForm;
