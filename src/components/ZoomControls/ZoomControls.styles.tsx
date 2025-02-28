@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ZoomControlsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 100%;
 `;
 
 export const ZoomOutAndInContainer = styled.div`

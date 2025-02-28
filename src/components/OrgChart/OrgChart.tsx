@@ -5,17 +5,26 @@ import EmployeeForm from "../AddEmployee/AddEmployee";
 import EditEmployeeForm from "../EditEmployeeForm/EditEmployeeForm";
 import OrgChartControls from "../OrgChartControls/OrgChartControls";
 import Spinner from "../Spinner/Spinner";
+import DownloadButtonsContainer from "../DownloadButtonsContainer/DownloadButtonsContainer";
 import {
   downloadOrgChartAsPDF,
   downloadOrgChartAsImage,
 } from "../../utils/orgChartDownloadUtils";
-import { OrgChartWorkspace, OrgChartContainer, StyledOrgChart, ResponsiveMessageContainer, ResponsiveMessage } from "./OrgChart.styles";
+import {
+  OrgChartWorkspace,
+  OrgChartContainer,
+  StyledOrgChart,
+  ResponsiveMessageContainer,
+  ResponsiveMessage,
+  Sidebar,
+} from "./OrgChart.styles";
 
-const LazyOrgChart = React.lazy(() => import('./OrganizationChartWrapper'));
+const LazyOrgChart = React.lazy(() => import("./OrganizationChartWrapper"));
 
 const OrgChart: React.FC = () => {
   const orgChartRef = useRef<HTMLDivElement>(null); // Create a ref for the organization chart
-  const { zoomIn, zoomOut, setZoom, resetZoom, handleCenterClick } = useZoomAndPan(orgChartRef);
+  const { zoomIn, zoomOut, setZoom, resetZoom, handleCenterClick } =
+    useZoomAndPan(orgChartRef);
   const [isChartVisible, setIsChartVisible] = useState(false);
 
   useEffect(() => {
@@ -40,10 +49,18 @@ const OrgChart: React.FC = () => {
 
   return (
     <>
-      <OrgChartWorkspace>
-        <OrgChartControls
+      <Sidebar>
+        <h1>Org Chart</h1>
+        <DownloadButtonsContainer
           onDownloadPDF={() => downloadOrgChartAsPDF(resetZoom, setZoom)}
           onDownloadImage={() => downloadOrgChartAsImage(resetZoom, setZoom)}
+        />
+        <p className="copyright">Organizational Chart, 2025</p>
+      </Sidebar>
+      <OrgChartWorkspace>
+        <OrgChartControls
+          // onDownloadPDF={() => downloadOrgChartAsPDF(resetZoom, setZoom)}
+          // onDownloadImage={() => downloadOrgChartAsImage(resetZoom, setZoom)}
           onZoomIn={zoomIn}
           onZoomOut={zoomOut}
           onCenterClick={handleCenterClick}
@@ -52,8 +69,7 @@ const OrgChart: React.FC = () => {
           {data.length > 0 && isChartVisible ? (
             <StyledOrgChart>
               <Suspense fallback={<Spinner />}>
-                <LazyOrgChart value={data}
-                nodeTemplate={nodeTemplate}/>
+                <LazyOrgChart value={data} nodeTemplate={nodeTemplate} />
               </Suspense>
             </StyledOrgChart>
           ) : (
@@ -78,12 +94,13 @@ const OrgChart: React.FC = () => {
       </OrgChartWorkspace>
       <ResponsiveMessageContainer>
         <ResponsiveMessage>
-          This org chart app is not supported on mobile devices. 
-          For the best experience, please view it on a larger screen with a width of at least 1000px.
+          This org chart app is not supported on mobile devices. For the best
+          experience, please view it on a larger screen with a width of at least
+          1000px.
         </ResponsiveMessage>
       </ResponsiveMessageContainer>
     </>
   );
-}
+};
 
 export default OrgChart;

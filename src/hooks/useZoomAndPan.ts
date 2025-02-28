@@ -100,7 +100,21 @@ const useZoomAndPan = (ref: RefObject<HTMLElement>): ZoomAndPan => {
 
   const handleResize = () => {
     const { innerWidth } = window;
-    const newScale = (innerWidth * 0.43) / 1000;
+    let scaleFactor: number;
+
+    if (innerWidth > 1900) {
+      scaleFactor = 0.4;
+    } else if (innerWidth > 1400) {
+      scaleFactor = 0.38;
+    } else if (innerWidth > 1024) {
+      scaleFactor = 0.5;
+    } else if (innerWidth > 768) {
+      scaleFactor = 0.7;
+    } else {
+      scaleFactor = 0.9;
+    }
+
+    const newScale = (innerWidth * scaleFactor) / 1000;
     setZoom(newScale);
   };
 
