@@ -13,6 +13,10 @@ export const DownloadContainer = styled.div`
     line-height: 1.5;
     color: #dedede;
   }
+
+  @media (min-width: 1600px) {
+    gap: 20px;
+  }
 `;
 
 export const DownloadButton = styled.button`

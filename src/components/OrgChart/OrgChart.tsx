@@ -5,6 +5,7 @@ import EmployeeForm from "../AddEmployee/AddEmployee";
 import EditEmployeeForm from "../EditEmployeeForm/EditEmployeeForm";
 import OrgChartControls from "../OrgChartControls/OrgChartControls";
 import Spinner from "../Spinner/Spinner";
+import { getCurrentYear } from "../../utils/dateUtils";
 import DownloadButtonsContainer from "../DownloadButtonsContainer/DownloadButtonsContainer";
 import {
   downloadOrgChartAsPDF,
@@ -17,6 +18,9 @@ import {
   ResponsiveMessageContainer,
   ResponsiveMessage,
   Sidebar,
+  GitHubLink,
+  ResetPositionButton,
+  TextContainer,
 } from "./OrgChart.styles";
 
 const LazyOrgChart = React.lazy(() => import("./OrganizationChartWrapper"));
@@ -47,6 +51,8 @@ const OrgChart: React.FC = () => {
     handleEditEmployee,
   } = useEmployeeNode();
 
+  const year = getCurrentYear();
+
   return (
     <>
       <Sidebar>
@@ -55,12 +61,20 @@ const OrgChart: React.FC = () => {
           onDownloadPDF={() => downloadOrgChartAsPDF(resetZoom, setZoom)}
           onDownloadImage={() => downloadOrgChartAsImage(resetZoom, setZoom)}
         />
-        <p className="copyright">Organizational Chart, 2025</p>
+        <ResetPositionButton onClick={handleCenterClick}>
+          Reset org chart view
+        </ResetPositionButton>
+        <GitHubLink
+          href="https://github.com/cd-roman/org-chart"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Link to GitHub <i className="pi pi-github" />
+        </GitHubLink>
+        <TextContainer>Organizational Chart, {year}</TextContainer>
       </Sidebar>
       <OrgChartWorkspace>
         <OrgChartControls
-          // onDownloadPDF={() => downloadOrgChartAsPDF(resetZoom, setZoom)}
-          // onDownloadImage={() => downloadOrgChartAsImage(resetZoom, setZoom)}
           onZoomIn={zoomIn}
           onZoomOut={zoomOut}
           onCenterClick={handleCenterClick}
