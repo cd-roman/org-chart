@@ -16,6 +16,12 @@ export const ImageContainer = styled.div`
     height: 100%;
     object-fit: cover;
     border-radius: 24px;
+    pointer-events: none;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
   }
 `;
 
