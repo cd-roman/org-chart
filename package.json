@@ -11,7 +11,7 @@
     "ejs": "^3.1.10",
     "express": "^4.21.2",
     "html2canvas": "^1.4.1",
-    "jspdf": "^2.5.1",
+    "jspdf": "^3.0.0",
     "micromatch": "^4.0.8",
     "primeicons": "^6.0.1",
     "primereact": "^10.5.3",
@@ -60,7 +60,6 @@
     "serialize-javascript": "6.0.2",
     "dompurify": "3.2.4",
     "postcss": "8.4.31",
-    "nth-check": "^2.0.1",
-    "canvg": "4.0.2"
+    "nth-check": "^2.0.1"
   }
 }
