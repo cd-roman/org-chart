@@ -13,8 +13,8 @@ const DownloadButtonsContainer: React.FC<DownloadButtonsContainerProps> = ({ onD
   return (
     <DownloadContainer>
       <p>
-        Export your organization chart in one of two available formats: PDF or
-        JPEG.
+        You can add, edit or remove employees, and then export your organization
+        chart as PDF or JPEG.
       </p>
       <p>
         Downloads capture the entire chart regardless of current zoom level or
@@ -25,7 +25,7 @@ const DownloadButtonsContainer: React.FC<DownloadButtonsContainerProps> = ({ onD
         <i className="pi pi-download" />
       </DownloadButton>
       <DownloadButton onClick={onDownloadImage}>
-        Download Image
+        Download image
         <i className="pi pi-download" />
       </DownloadButton>
     </DownloadContainer>
