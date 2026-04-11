@@ -54,12 +54,5 @@
     "generate-react-cli": "^11.0.4",
     "typescript": "^4.9.5",
     "vite": "^6.4.2"
-  },
-  "overrides": {
-    "braces": "3.0.3",
-    "serialize-javascript": "6.0.2",
-    "postcss": "8.4.31",
-    "nth-check": "^2.0.1",
-    "canvg": "4.0.3"
   }
 }
