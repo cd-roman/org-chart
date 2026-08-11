@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router";
 import "./App.scss";
 import OrgChart from "./components/OrgChart/OrgChart";
 import NotFound from "./components/NotFound/NotFound";
