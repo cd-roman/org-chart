@@ -21,7 +21,7 @@
     "sass": "^1.72.0",
     "styled-components": "^6.1.8",
     "web-vitals": "^2.1.4",
-    "webpack-dev-middleware": "^5.3.4",
+    "webpack-dev-middleware": "^7.4.5",
     "ws": "^8.17.1"
   },
   "scripts": {
